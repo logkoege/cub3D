@@ -6,7 +6,7 @@
 #    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
-#    Updated: 2025/04/05 18:28:17 by logkoege         ###   ########.fr        #
+#    Updated: 2025/04/09 15:02:20 by logkoege         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ INCLUDES = -I./minilibx-linux -I.
 
 SRC =	parsing/main.c\
 		parsing/utils.c\
+		parsing/mlx_utils.c\
 
 OBJ = $(SRC:.c=.o)
 

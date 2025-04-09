@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/05 18:19:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/09 15:28:46 by logkoege         ###   ########.fr       */
+/*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
+/*   Updated: 2025/04/09 15:25:57 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main()
+void	init_mlx(t_data *data)
 {
-	t_data	data;
-
-	init_var(&data);
-	init_mlx(&data);
-	mlx_hook(data.win_ptr, 2, 1L << 0, player_intructs, &data);
-	mlx_hook(data.win_ptr, 17, 0, ft_close, &data);
-	mlx_loop(data.mlx_ptr);
-	return (0);
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		ft_freexit(data, "Error : mlx initialisation");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "LevPD");
+	if (!data->win_ptr)
+		ft_freexit(data, "Error : window initialisation");
 }
