@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/09 15:23:53 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:43:30 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,38 @@
 # define S			115
 # define D			100
 
-# define WIDTH		1000
-# define HEIGHT		500
+# define WIDTH		960
+# define HEIGHT		540
 
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
+	void	*mlx;
+	void	*win;
 }	t_data;
 
-typedef struct s_img
+typedef struct s_image
 {
-	
-}	t_img;
+	void	*img;
+	char	*addr;
+	int		bit_pxl;
+	int		line_len;
+	int		endian;
+}	t_image;
 
-void	init_var(t_data *data);
+///////////////////////////////////__EXEC__///////////////////////////////////////
 
-void	init_mlx(t_data *data);
+// mlx_util.c
 
+void	init_mlx(t_data *data, t_image *image);
+void	mlx_pxl(t_image *img, int x, int y, int color);
+
+// utils.c
+void	init_var(t_data *data, t_image *image);
 void	ft_freexit(t_data *data, char *msg);
-
 int		ft_close(t_data *data);
-
 int		player_intructs(int keycode, t_data *data);
+
+
+///////////////////////////////////_PARSING_//////////////////////////////////////
 
 #endif

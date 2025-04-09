@@ -6,7 +6,7 @@
 #    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
-#    Updated: 2025/04/09 15:02:20 by logkoege         ###   ########.fr        #
+#    Updated: 2025/04/09 18:42:37 by logkoege         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,9 @@ CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 MLX = -L./minilibx-linux -lmlx -lX11 -lXext -lm
 INCLUDES = -I./minilibx-linux -I.
 
-SRC =	parsing/main.c\
-		parsing/utils.c\
-		parsing/mlx_utils.c\
+SRC =	exec/main.c\
+		exec/utils.c\
+		exec/mlx_utils.c\
 
 OBJ = $(SRC:.c=.o)
 

@@ -1,38 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/05 18:28:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/09 15:28:43 by logkoege         ###   ########.fr       */
+/*   Created: 2025/04/05 18:19:26 by logkoege          #+#    #+#             */
+/*   Updated: 2025/04/09 18:25:25 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	init_var(t_data *data)
+int	main()
 {
-	data->mlx_ptr = NULL;
-	data->win_ptr = NULL;
-}
-void	ft_freexit(t_data *data, char *msg)
-{
-	(void)data;
-	printf("%s\n", msg);
-	exit(1);
-}
+	t_data	data;
+	t_image	img;
 
-int	ft_close(t_data *data)
-{
-	ft_freexit(data, "x\n");
-	return (0);
-}
-
-int	player_intructs(int keycode, t_data *data)
-{
-	if (keycode == ESC)
-		ft_freexit(data, "Esc\n");
+	init_var(&data, &img);
+	init_mlx(&data, &img);
+	mlx_hook(data.win, 2, 1L << 0, player_intructs, &data);
+	mlx_hook(data.win, 17, 0, ft_close, &data);
+	mlx_loop(data.mlx);
 	return (0);
 }
