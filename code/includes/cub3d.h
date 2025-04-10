@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/10 16:35:29 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:14:45 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
+	int		front;
+	int		back;
+	int		left;
+	int		right;
 }	t_data;
 
 typedef struct s_image
@@ -66,17 +70,20 @@ typedef struct s_image
 
 typedef struct s_player
 {
-	double	posX;
-	double	posY;
-	double	dirX;
-	double	dirY;
-	double	CplaneX;
-	double	CplaneY;
+	double	pos_x;
+	double	pos_y;
+	double	dir_x;
+	double	dir_y;
+	double	cam_plane_x;
+	double	cam_plane_y;
 	double	oldtime;
 	double	time;
+	double	camera_x;
+	double	raydir_x;
+	double	raydir_y;
 }	t_player;
 
-///////////////////////////////////__EXEC__///////////////////////////////////////
+///////////////////////////////////__EXEC__////////////////////////////////////
 
 // mlx_util.c
 
@@ -89,7 +96,6 @@ void	ft_freexit(t_data *data, char *msg);
 int		ft_close(t_data *data);
 int		player_intructs(int keycode, t_data *data);
 
-
-///////////////////////////////////_PARSING_//////////////////////////////////////
+///////////////////////////////////_PARSING_///////////////////////////////////
 
 #endif

@@ -6,7 +6,7 @@
 #    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
-#    Updated: 2025/04/09 18:42:37 by logkoege         ###   ########.fr        #
+#    Updated: 2025/04/10 23:58:24 by logkoege         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ INCLUDES = -I./minilibx-linux -I.
 SRC =	exec/main.c\
 		exec/utils.c\
 		exec/mlx_utils.c\
+		exec/move.c\
 
 OBJ = $(SRC:.c=.o)
 
