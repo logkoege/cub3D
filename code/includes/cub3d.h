@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/09 18:43:30 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:35:29 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define EAST_CAMERA	'E'
 # define WEST_CAMERA	'W'
 # define SOUTH_CAMERA	'S'
-# define EASTER_EGG		'Y'
+# define EASTER_EGG		'G'
 
 # define ESC		65307
 # define W			119
@@ -63,6 +63,18 @@ typedef struct s_image
 	int		line_len;
 	int		endian;
 }	t_image;
+
+typedef struct s_player
+{
+	double	posX;
+	double	posY;
+	double	dirX;
+	double	dirY;
+	double	CplaneX;
+	double	CplaneY;
+	double	oldtime;
+	double	time;
+}	t_player;
 
 ///////////////////////////////////__EXEC__///////////////////////////////////////
 
