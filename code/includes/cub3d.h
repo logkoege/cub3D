@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/11 00:14:45 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/11 18:53:28 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_player
 
 void	init_mlx(t_data *data, t_image *image);
 void	mlx_pxl(t_image *img, int x, int y, int color);
+void	mlx_draw(int i, int j, t_image *img);
 
 // utils.c
 void	init_var(t_data *data, t_image *image);
