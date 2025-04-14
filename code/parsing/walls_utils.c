@@ -1,26 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   walls_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/05 18:19:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/10 14:31:48 by lloginov         ###   ########.fr       */
+/*   Created: 2025/04/14 14:59:44 by lloginov          #+#    #+#             */
+/*   Updated: 2025/04/14 15:01:50 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int argc, char **argv)
+int	check_arg(char *arg, char f, char s)
 {
-	t_data	data;
-
-	(void)argv;
-	if(argc != 2)
-		return (1);
-	init_var(&data);
-	parsing(&data, argc, argv);
-	free_all(&data);
-	return (0);
+	int i;
+	i = 0;
+	if(!arg)
+		return(0);
+	while(arg[i])	
+	{
+		if(arg[i] == f && arg[i + 1] == s)
+		{
+			i += 2;
+			while ((arg[i] >= 9 && arg[i] <= 13) || arg[i] == ' ')
+			{
+				i++;
+			}
+			return(i);
+		}
+		i++;
+	}
+	return(i);
+}
+int	check_ws(char *arg, int i)
+{
+	while(arg[i])
+	{
+		if(ft_is_ws(arg[i]) == 1)
+			return(i);
+		i++;
+	}
+	printf("noreturn\n");
+	return(i);
 }

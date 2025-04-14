@@ -3,28 +3,36 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
+#    By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
-#    Updated: 2025/04/05 18:28:17 by logkoege         ###   ########.fr        #
+#    Updated: 2025/04/14 17:27:30 by lloginov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
 MLX = -L./minilibx-linux -lmlx -lX11 -lXext -lm
 INCLUDES = -I./minilibx-linux -I.
 
-SRC =	parsing/main.c\
+SRC =	gnl/get_next_line.c\
+		gnl/get_next_line_utils.c\
+		parsing/main.c\
 		parsing/utils.c\
+		parsing/parsing.c\
+		parsing/check_files.c\
+		parsing/walls_utils.c\
+		parsing/color_check.c\
+		parsing/ft_spliter.c\
 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
+# $(MLX)
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 clean:
 	rm -f $(OBJ)
