@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/11 18:53:28 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/14 18:29:12 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,21 @@
 # define A			97
 # define S			115
 # define D			100
+# define G			103
+# define PI			3.14159265359
 
-# define ESC		65307
-# define W			119
-# define A			97
-# define S			115
-# define D			100
-
-# define WIDTH		960
-# define HEIGHT		540
+# define WIDTH		1280
+# define HEIGHT		720
 
 typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
-	int		front;
-	int		back;
-	int		left;
-	int		right;
+	int frame;
+	bool	front;
+	bool	back;
+	bool	left;
+	bool	right;
 }	t_data;
 
 typedef struct s_image
@@ -86,16 +83,28 @@ typedef struct s_player
 ///////////////////////////////////__EXEC__////////////////////////////////////
 
 // mlx_util.c
-
 void	init_mlx(t_data *data, t_image *image);
 void	mlx_pxl(t_image *img, int x, int y, int color);
 void	mlx_draw(int i, int j, t_image *img);
 
 // utils.c
-void	init_var(t_data *data, t_image *image);
+void	init_player(t_player *player);
+void	init_var(t_data *data, t_image *image, t_player *player);
 void	ft_freexit(t_data *data, char *msg);
 int		ft_close(t_data *data);
-int		player_intructs(int keycode, t_data *data);
+
+// move.c
+void	player_intructs(t_data *data, t_player *player);
+void	easter_egg(void);
+
+void	twod_map(t_image *img, t_player *player);
+void	draw_player(int p_size, int color, t_image *img, t_player *player);
+int		draw_player_loop(t_image *img, t_data *data, t_player *player);
+
+// utils2.c
+int		press(int keycode, t_data *data);
+int		release(int keycode, t_data *data);
+
 
 ///////////////////////////////////_PARSING_///////////////////////////////////
 

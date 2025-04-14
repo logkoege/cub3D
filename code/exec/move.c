@@ -6,23 +6,39 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/11 00:15:27 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/14 18:37:42 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	player_intructs(int keycode, t_data *data)
+void	player_intructs(t_data *data, t_player *player)
 {
-	if (keycode == ESC)
-		ft_freexit(data, "");
-	else if (keycode == W)
-		data->front++;
-	else if (keycode == A)
-		data->left++;
-	else if (keycode == S)
-		data->back++;
-	else if (keycode == D)
-		data->right++;
-	return (0);
+	printf("p\n");
+	if (data->front)
+	{
+		player->pos_y -= 5;
+		printf("Front Y = %f\n", player->pos_y);
+	}
+	else if (data->left)
+	{
+		player->pos_x -= 5;
+		printf("Left X = %f\n", player->pos_x);
+	}
+	else if (data->right)
+	{
+		printf("Right X = %f\n", player->pos_x);
+		player->pos_x += 5;
+	}
+	else if (data->back)
+	{
+		printf("Back Y = %f\n", player->pos_y);
+		player->pos_y += 5;
+	}
+	printf("la\n");
+}
+
+void	easter_egg()
+{
+	printf("tp dans une piece ou il y a tourpal tt nue\n");
 }
