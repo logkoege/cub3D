@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/14 18:29:12 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:21:30 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,15 @@
 # define S			115
 # define D			100
 # define G			103
+
 # define PI			3.14159265359
+# define SQUARE		70
+
+# define RIGHT		65363
+# define LEFT		65361
 
 # define WIDTH		1280
 # define HEIGHT		720
-
-typedef struct s_data
-{
-	void	*mlx;
-	void	*win;
-	int frame;
-	bool	front;
-	bool	back;
-	bool	left;
-	bool	right;
-}	t_data;
 
 typedef struct s_image
 {
@@ -78,7 +72,23 @@ typedef struct s_player
 	double	camera_x;
 	double	raydir_x;
 	double	raydir_y;
+	struct s_image *img;
 }	t_player;
+typedef struct s_data
+{
+	void	*mlx;
+	void	*win;
+	int frame;
+	bool	front;
+	bool	back;
+	bool	left;
+	bool	right;
+	char	**map;
+	struct s_image *img;
+	struct s_player *player;
+}	t_data;
+
+
 
 ///////////////////////////////////__EXEC__////////////////////////////////////
 
@@ -97,14 +107,19 @@ int		ft_close(t_data *data);
 void	player_intructs(t_data *data, t_player *player);
 void	easter_egg(void);
 
-void	twod_map(t_image *img, t_player *player);
-void	draw_player(int p_size, int color, t_image *img, t_player *player);
-int		draw_player_loop(t_image *img, t_data *data, t_player *player);
+void	twod_map(t_data *data);
+void	draw_player(int x, int y, int p_size, int color, t_data *data);
+int		draw_player_loop(t_data *data);
 
 // utils2.c
 int		press(int keycode, t_data *data);
 int		release(int keycode, t_data *data);
 
+// draw.c
+int		draw_player_loop(t_data *data);
+void	clear_img(t_data *data);
+void	map(t_data *data);
+void	draw_map(t_data *data);
 
 ///////////////////////////////////_PARSING_///////////////////////////////////
 

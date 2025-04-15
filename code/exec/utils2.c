@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:49:11 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/14 18:37:10 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:22:23 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 int	press(int keycode, t_data *data)
 {
+	
 	if (keycode == ESC)
 		ft_freexit(data, "");
 	else if (keycode == W)
-	{
-		printf("lala\n");
 		data->front = true;
-	}
 	else if (keycode == A)
 		data->left = true;
 	else if (keycode == S)
@@ -29,6 +27,14 @@ int	press(int keycode, t_data *data)
 		data->right = true;
 	else if (keycode == G)
 		easter_egg();
+	else if (keycode == W)
+		data->front = true;
+	else if (keycode == A)
+		data->left = true;
+	else if (keycode == S)
+		data->back = true;
+	else if (keycode == D)
+		
 	return (0);
 }
 int	release(int keycode, t_data *data)

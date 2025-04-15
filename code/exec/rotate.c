@@ -1,41 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move.c                                             :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/15 19:42:56 by logkoege         ###   ########.fr       */
+/*   Created: 2025/04/15 16:29:43 by logkoege          #+#    #+#             */
+/*   Updated: 2025/04/15 16:30:03 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-void	player_intructs(t_data *data, t_player *player)
-{
-	int	i;
-
-	i = 4;
-	if (data->front)
-	{
-		player->pos_y -= i;
-	}
-	else if (data->left)
-	{
-		player->pos_x -= i;
-	}
-	else if (data->right)
-	{
-		player->pos_x += i;
-	}
-	else if (data->back)
-	{
-		player->pos_y += i;
-	}
-}
-
-void	easter_egg()
-{
-	printf("tp dans une piece ou il y a tourpal tt nue\n");
-}

@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/14 18:08:52 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:24:34 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	init_mlx(t_data *data, t_image *img)
 {
-	//int	i;
-	//int	j;
+	int	i;
+	int	j;
 
-	//i = 0;
-	//j = 0;
+	i = 0;
+	j = 0;
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		ft_freexit(data, "Error : mlx initialisation");
@@ -28,7 +28,7 @@ void	init_mlx(t_data *data, t_image *img)
 	img->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bit_pxl, &img->line_len,
 			&img->endian);
-	//mlx_draw(i, j, img);
+	mlx_draw(i, j, img);
 	mlx_put_image_to_window(data->mlx, data->win, img->img, 0, 0);
 }
 
@@ -36,6 +36,8 @@ void	mlx_pxl(t_image *img, int x, int y, int color)
 {
 	char	*dst;
 
+	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+		return;
 	dst = img->addr + (y * img->line_len + x * (img->bit_pxl / 8));
 	*(unsigned int *)dst = color;
 }
@@ -57,37 +59,41 @@ void	mlx_draw(int i, int j, t_image *img)
 	}
 }
 
-void	twod_map(t_image *img, t_player *player)
+void	twod_map(t_data *data)
 {
-	draw_player(10, 0X00FF00, img, player);
+	draw_player(data->player->pos_x, data->player->pos_y, 10, 0X00FF00, data);
 }
 
-void	draw_player(int p_size, int color, t_image *img, t_player *player)
+void	draw_player(int x, int y, int p_size, int color, t_data *data)
 {
 	int	i;
 
 	i = 0;
 	while(i <= p_size)
 	{
-		mlx_pxl(img, player->pos_x + i, player->pos_y, color);
+		mlx_pxl(data->img, x + i, y, color);
 		i++;
 	}
 	i = 0;
 	while(i <= p_size)
 	{
-		mlx_pxl(img, player->pos_x, player->pos_y + i, color);
+		mlx_pxl(data->img, x, y + i, color);
 		i++;
 	}
 	i = 0;
 	while(i <= p_size)
 	{
-		mlx_pxl(img, player->pos_x + p_size, player->pos_y + i, color);
+		mlx_pxl(data->img, x + p_size, y + i, color);
 		i++;
 	}
 	i = 0;
 	while(i <= p_size)
 	{
-		mlx_pxl(img, player->pos_x + i, player->pos_y + p_size, color);
+		mlx_pxl(data->img, x + i, y + p_size, color);
 		i++;
 	}
+}
+void	draw_wall(int x, int y, int p_size, int color, t_data *data)
+{
+	
 }
