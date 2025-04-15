@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:57:53 by lloginov          #+#    #+#             */
-/*   Updated: 2025/04/14 15:51:25 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:38:38 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,14 @@ int parsing(t_data *data, int ac, char **av)
 	map_dup(data, av[1]);
 	// print_map(data);
 	wall_files_check(data);
+	color_check(data);
 	// printf("wall south : %s\n", data->file_south);
 	// printf("wall wesat : %s\n", data->file_west);
 	// printf("wall norte : %s\n", data->file_north);
 	// printf("wall eat : %s\n", data->file_east);
-	color_check(data);
+	// printf("voici plafond color = %d\n voici roof color = %d\n", data->floor_color, data->roof_color);
 	// file_acces(data);
+	assign_map(data);
+
 	return(0);
 }

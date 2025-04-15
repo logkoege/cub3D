@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 12:02:43 by lloginov          #+#    #+#             */
-/*   Updated: 2025/04/14 14:59:37 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:56:53 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,16 +67,14 @@ void	wall_files_check(t_data *data)
 	i = 0;
 	while(data->map[i])
 	{
-		if(ft_strcmp_pos(data->map[i], "SO") == 0)
+		if(ft_strcmp_pos(data->map[i], "SO") == 0 && counter != 4)
 			counter = south_check(data, i, counter);
-		else if(ft_strcmp_pos(data->map[i], "NO") == 0)
+		else if(ft_strcmp_pos(data->map[i], "NO") == 0 && counter != 4)
 			counter = north_check(data, i, counter);
-		else if(ft_strcmp_pos(data->map[i], "WE") == 0)
+		else if(ft_strcmp_pos(data->map[i], "WE") == 0 && counter != 4)
 			counter = west_check(data, i, counter);
-		else if(ft_strcmp_pos(data->map[i], "EA") == 0)
+		else if(ft_strcmp_pos(data->map[i], "EA") == 0 && counter != 4)
 			counter = east_check(data, i, counter);
 		i++;
 	}
-	if(counter != 4)
-		free_exit(data, "Error : too many or not enough files");
 }

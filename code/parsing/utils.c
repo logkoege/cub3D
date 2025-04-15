@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:28:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/14 14:57:19 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:11:20 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	init_var(t_data *data)
 	data->file_north = NULL;
 	data->file_south = NULL;
 	data->file_west = NULL;
+	data->truemap = NULL;
 	return ;
 }
 
@@ -131,6 +132,14 @@ void	free_all(t_data *data)
 		free(data->file_south);
 	if(data->file_west)
 		free(data->file_west);
+	i = 0;
+	while(data->truemap[i])
+	{
+		if(data->truemap[i])
+			free(data->truemap[i]);
+		i++;
+	}
+	free(data->truemap);
 }
 
 void	free_exit(t_data *data, char *str)
@@ -145,4 +154,29 @@ int	ft_is_ws(int i)
 	if ((i >= 9 && i <= 13) || i == ' ')
 		return (1);
 	return (0);
+}
+
+int	ft_atoi(char *str)
+{
+	int	i;
+	int	sign;
+	int	number;
+
+	i = 0;
+	sign = 1;
+	number = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -sign;
+		i++;
+	}
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	{
+		number = number * 10 + (str[i] - 48);
+		i++;
+	}
+	return (number * sign);
 }

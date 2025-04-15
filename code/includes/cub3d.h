@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/14 17:01:21 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:27:34 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 typedef struct s_data
 {
 	char 	**map;
+	char 	**truemap;
 	int		floor_color;
 	int		roof_color;
 	char 	*file_north;
@@ -62,6 +63,9 @@ typedef struct s_img
 {
 	
 }	t_img;
+
+//map
+void	assign_map(t_data *data);
 
 //parsing
 
@@ -80,13 +84,28 @@ void	free_all(t_data *data);
 void	free_exit(t_data *data, char *str);
 int		ft_is_ws(int i);
 char	**ft_spliter(char *s, char c);
+int	ft_atoi(char *str);
 
 //wals_utils
-int	check_arg(char *arg, char f, char s);
-int	check_ws(char *arg, int i);
+int		check_arg(char *arg, char f, char s);
+int		check_ws(char *arg, int i);
+
+//floor utils
+void	floor_color_arg(t_data *data, char *arg);
+int		ft_isdigit(int c);
+int		ft_strcmp_clor(char *s1, char *s2);
+int		find_char(char *str, char c);
+void	free_tab(char **tab);
+int check_red(t_data *data, char *red);
+int check_green(t_data *data, char *green);
+int check_blue(t_data *data, char *blue);
+int rgb_to_hex(int r, int g, int b);
+
+//roof color
+void roof_color_arg(t_data *data, char *arg);
 
 //check_file
-void	wall_files_check(t_data *data);
+void		wall_files_check(t_data *data);
 
 //color check
 void color_check(t_data *data);

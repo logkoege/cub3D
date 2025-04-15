@@ -6,13 +6,13 @@
 #    By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
-#    Updated: 2025/04/14 17:27:30 by lloginov         ###   ########.fr        #
+#    Updated: 2025/04/15 18:30:47 by lloginov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 MLX = -L./minilibx-linux -lmlx -lX11 -lXext -lm
 INCLUDES = -I./minilibx-linux -I.
 
@@ -25,6 +25,10 @@ SRC =	gnl/get_next_line.c\
 		parsing/walls_utils.c\
 		parsing/color_check.c\
 		parsing/ft_spliter.c\
+		parsing/roof_color_check.c\
+		parsing/floor_parser.c\
+		parsing/color_utils.c\
+		parsing/map_assign.c\
 
 OBJ = $(SRC:.c=.o)
 
