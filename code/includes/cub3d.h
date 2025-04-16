@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/15 19:21:30 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/16 23:02:55 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@
 # define G			103
 
 # define PI			3.14159265359
-# define SQUARE		70
+# define S_SQUARE		64
 
 # define RIGHT		65363
 # define LEFT		65361
@@ -61,8 +61,13 @@ typedef struct s_image
 
 typedef struct s_player
 {
+	double	angle;
 	double	pos_x;
 	double	pos_y;
+	double	cos_angle;
+	double	sin_angle;
+	double	angle_speed;
+	int		speed;
 	double	dir_x;
 	double	dir_y;
 	double	cam_plane_x;
@@ -83,6 +88,8 @@ typedef struct s_data
 	bool	back;
 	bool	left;
 	bool	right;
+	bool	camera_left;
+	bool	camera_right;
 	char	**map;
 	struct s_image *img;
 	struct s_player *player;
@@ -106,8 +113,8 @@ int		ft_close(t_data *data);
 // move.c
 void	player_intructs(t_data *data, t_player *player);
 void	easter_egg(void);
+void	player_camera(t_data *data, t_player *player);
 
-void	twod_map(t_data *data);
 void	draw_player(int x, int y, int p_size, int color, t_data *data);
 int		draw_player_loop(t_data *data);
 
@@ -120,6 +127,9 @@ int		draw_player_loop(t_data *data);
 void	clear_img(t_data *data);
 void	map(t_data *data);
 void	draw_map(t_data *data);
+
+// ray.c
+bool	line_to_wall(double px, double py, t_data *data);
 
 ///////////////////////////////////_PARSING_///////////////////////////////////
 

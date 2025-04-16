@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/15 19:24:34 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/16 23:05:40 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	mlx_pxl(t_image *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	mlx_draw(int i, int j, t_image *img)
+void	mlx_draw(int i, int j , t_image *img)
 {
 	while (i <= WIDTH)
 	{
@@ -50,18 +50,13 @@ void	mlx_draw(int i, int j, t_image *img)
 		while (j <= HEIGHT)
 		{
 			if (j <= HEIGHT / 2)
-				mlx_pxl(img, i, j, 0x77B5FE);
+				mlx_pxl(img, i, j, 0x1);
 			else
-				mlx_pxl(img, i, j, 0x3A9D23);
+				mlx_pxl(img, i, j, 0x1);
 			j++;
 		}
 		i++;
 	}
-}
-
-void	twod_map(t_data *data)
-{
-	draw_player(data->player->pos_x, data->player->pos_y, 10, 0X00FF00, data);
 }
 
 void	draw_player(int x, int y, int p_size, int color, t_data *data)
@@ -92,8 +87,4 @@ void	draw_player(int x, int y, int p_size, int color, t_data *data)
 		mlx_pxl(data->img, x + i, y + p_size, color);
 		i++;
 	}
-}
-void	draw_wall(int x, int y, int p_size, int color, t_data *data)
-{
-	
 }

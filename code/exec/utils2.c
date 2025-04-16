@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:49:11 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/15 19:22:23 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:29:23 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,10 @@ int	press(int keycode, t_data *data)
 		data->right = true;
 	else if (keycode == G)
 		easter_egg();
-	else if (keycode == W)
-		data->front = true;
-	else if (keycode == A)
-		data->left = true;
-	else if (keycode == S)
-		data->back = true;
-	else if (keycode == D)
-		
+	else if (keycode == RIGHT)
+		data->camera_right = true;
+	else if (keycode == LEFT)
+		data->camera_left = true;
 	return (0);
 }
 int	release(int keycode, t_data *data)
@@ -47,5 +43,9 @@ int	release(int keycode, t_data *data)
 		data->back = false;
 	else if (keycode == D)
 		data->right = false;
+	else if (keycode == RIGHT)
+		data->camera_right = false;
+	else if (keycode == LEFT)
+		data->camera_left = false;
 	return (0);
 }

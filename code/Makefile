@@ -6,13 +6,13 @@
 #    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
-#    Updated: 2025/04/14 18:13:00 by logkoege         ###   ########.fr        #
+#    Updated: 2025/04/16 18:20:21 by logkoege         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = cub3d
 CC = gcc
-CFLAGS =  -g3 -fsanitize=address
+CFLAGS = -Werror -Wall -Wextra -g3 -fsanitize=address
 MLX = -L./minilibx-linux -lmlx -lX11 -lXext -lm
 INCLUDES = -I./minilibx-linux -I.
 
@@ -22,6 +22,7 @@ SRC =	exec/main.c\
 		exec/move.c\
 		exec/draw.c\
 		exec/utils2.c\
+		exec/ray.c\
 
 OBJ = $(SRC:.c=.o)
 
