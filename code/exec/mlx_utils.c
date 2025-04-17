@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/16 23:05:40 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:22:13 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,25 @@ void	mlx_pxl(t_image *img, int x, int y, int color)
 
 void	mlx_draw(int i, int j , t_image *img)
 {
+	int	color1;
+	int	color2;
+	
+	color1 = 0x77B5FE;
+	color2 = 0x3A9D23;
+	if (DD_MOD)
+	{
+		color1 = 0;
+		color2 = 0;
+	}
 	while (i <= WIDTH)
 	{
 		j = 0;
 		while (j <= HEIGHT)
 		{
 			if (j <= HEIGHT / 2)
-				mlx_pxl(img, i, j, 0x1);
+				mlx_pxl(img, i, j, color1);
 			else
-				mlx_pxl(img, i, j, 0x1);
+				mlx_pxl(img, i, j, color2);
 			j++;
 		}
 		i++;

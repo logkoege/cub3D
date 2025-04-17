@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/16 23:16:29 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:13:24 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,13 @@ void	player_camera(t_data *data, t_player *player)
 	}
 	if (data->left)
 	{
-		player->pos_x += player->cos_angle * player->speed;
-		player->pos_y -= player->sin_angle * player->speed;
+		player->pos_x += player->sin_angle * player->speed;
+		player->pos_y -= player->cos_angle * player->speed;
 	}
 	if (data->right)
 	{
-		player->pos_x -= player->cos_angle * player->speed;
-		player->pos_y += player->sin_angle * player->speed;
+		player->pos_x -= player->sin_angle * player->speed;
+		player->pos_y += player->cos_angle * player->speed;
 	}
 	if (data->back)
 	{

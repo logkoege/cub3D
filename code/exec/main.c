@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:19:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/16 23:09:30 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/17 17:23:12 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 	map(&data);
 	data.img = &img;
 	data.player = &player;
-	//draw_map(&data);
 	mlx_hook(data.win, 2, 1L<<0, press, &data);
 	mlx_hook(data.win, 3, 1L<<1, release, &data);
 	mlx_hook(data.win, 17, 0, ft_close, &data);
