@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:28:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/16 17:02:14 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:46:50 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@ void	init_player(t_player *player)
 {
 	player->pos_x = WIDTH / 2;
 	player->pos_y = HEIGHT / 2;
-	player->dir_x = -1;
-	player->dir_y = 0;
-	player->cam_plane_x = 0;
-	player->cam_plane_y = 0.66;
-	player->oldtime = 0;
-	player->time = 0;
-	player->camera_x = 0;
-	player->raydir_x = 0;
-	player->raydir_y = 0;
 	player->angle = PI / 2;
 }
 

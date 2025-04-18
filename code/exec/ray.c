@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:20:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/17 17:14:32 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:39:32 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double	sqr(double a)
 	return a*a;
 }
  
-double	squirt(double x1, double y1, double x2, double y2)
+double	squirt(double x1, double x2 , double y1, double y2)
 {
 	return sqrt(sqr(y2 - y1) + sqr(x2 - x1));
 }

@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/17 17:13:24 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:17:42 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	player_intructs(t_data *data, t_player *player)
 {
-	player->speed = 5;
-	player->angle_speed = 0.1;
+	player->speed = 3;
+	player->angle_speed = 0.05;
 	player->cos_angle = cos(player->angle);
 	player->sin_angle = sin(player->angle);
 	if (data->camera_left)

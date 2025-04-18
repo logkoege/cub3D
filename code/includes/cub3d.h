@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/17 17:27:31 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:20:29 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 
 # define WIDTH		1280
 # define HEIGHT		720
-# define DD_MOD		0
+# define DD_MOD		1
 
 typedef struct s_image
 {
@@ -130,12 +130,10 @@ void	map(t_data *data);
 void	draw_map(t_data *data);
 void	draw_ray(t_data *data, t_player *player, double start_x, int i);
 
-
 // ray.c
 bool	line_to_wall(double px, double py, t_data *data);
 double	sqr(double a);
-double	squirt(double x1, double y1, double x2, double y2);
-
+double	squirt(double x, double y, double x1, double x2);
 
 ///////////////////////////////////_PARSING_///////////////////////////////////
 

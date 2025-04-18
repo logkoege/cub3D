@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/17 17:25:15 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:26:56 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ int	draw_player_loop(t_data *data)
 	double	fraction;
 	double	start_x;
 	int		i;
-	
+
 	i = 0;
 	fraction = PI / 3 / WIDTH;
 	start_x = data->player->angle - PI / 6;
 	player_intructs(data, data->player);
+	mlx_draw(0, 0, data->img);
 	if (DD_MOD)
 	{
-		mlx_draw(0, 0, data->img);
 		draw_player(data->player->pos_x, data->player->pos_y, 10, 0xFFFFFF, data);
 		draw_map(data);
 	}
@@ -48,7 +48,7 @@ void	clear_img(t_data *data)
 	while (i < HEIGHT)
 	{
 		j = 0;
-		while(j < WIDTH)
+		while (j < WIDTH)
 		{
 			mlx_pxl(data->img, i, j, 0);
 			j++;
@@ -81,12 +81,12 @@ void	map(t_data *data)
 		printf("map[%d] = %s\n", i, map[i]);
 		i++;
 	}
-
 }
+
 void	draw_map(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
@@ -118,23 +118,23 @@ void	draw_ray(t_data *data, t_player *player, double start_x, int i)
 	sin2 = sin(start_x);
 	ray_x = player->pos_x;
 	ray_y = player->pos_y;
-	distance = squirt(ray_x, player->pos_x, ray_y, player->pos_y);
-	size = ((WIDTH / 2) * (S_SQUARE / distance));
-	start_y = (HEIGHT - size) / 2;
-	end = start_y + size;
-	if (DD_MOD)
+	while(!line_to_wall(ray_x, ray_y, data))
 	{
-		while(!line_to_wall(ray_x, ray_y, data))
-		{
+		if (DD_MOD)
 			mlx_pxl(data->img, ray_x, ray_y, 0xFF0000);
-			ray_x += cos2;
-			ray_y += sin2;
-		}
+		ray_x += cos2;
+		ray_y += sin2;
 	}
-	else
-		while (start_y < end)
+	if (!DD_MOD)
+	{
+		distance = squirt(ray_x, player->pos_x, ray_y, player->pos_y);
+		size = ((WIDTH / 2) * (S_SQUARE / distance));
+		start_y = (HEIGHT - size) / 2;
+		end = start_y + size;
+			while (start_y < end)
 		{
 			mlx_pxl(data->img, i, start_y, 0x0000FF);
 			start_y++;
 		}
+	}
 }
