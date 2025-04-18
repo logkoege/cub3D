@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 21:07:41 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:40:43 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@ void	player_intructs(t_data *data, t_player *player)
 	player_camera(data, player);
 }
 
-void	easter_egg()
+void	easter_egg(void)
 {
 	printf("tp dans une piece ou il y a tourpal tt nue\n");
 }
+
 void	player_camera(t_data *data, t_player *player)
 {
 	if (data->front)

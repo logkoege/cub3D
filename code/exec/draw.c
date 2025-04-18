@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 21:16:10 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:40:32 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	draw_ray(t_data *data, t_player *player, double start_x, int i)
 	sin2 = sin(start_x);
 	ray_x = player->pos_x;
 	ray_y = player->pos_y;
-	while(!line_to_wall(ray_x, ray_y, data))
+	while (!line_to_wall(ray_x, ray_y, data))
 	{
 		if (DD_MOD)
 			mlx_pxl(data->img, ray_x, ray_y, 0xFF0000);
@@ -131,9 +131,9 @@ void	draw_ray(t_data *data, t_player *player, double start_x, int i)
 		size = ((WIDTH / 2) * (S_SQUARE / distance));
 		start_y = (HEIGHT - size) / 2;
 		end = start_y + size;
-			while (start_y < end)
+		while (start_y < end)
 		{
-			mlx_pxl(data->img, i, start_y, 0xDDAAAA);
+			mlx_pxl(data->img, i, start_y, 0xFFFFFF);
 			start_y++;
 		}
 	}

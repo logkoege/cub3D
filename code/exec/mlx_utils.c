@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 21:12:49 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 22:39:12 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,17 @@ void	mlx_pxl(t_image *img, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void	mlx_draw(int i, int j ,t_image *img)
+void	mlx_draw(int i, int j, t_image *img)
 {
 	int	color1;
 	int	color2;
+	int	color3;
+	int	color4;
 
-	color1 = 0xFF00FF;
-	color2 = 0x3A9D23;
+	color1 = 0x5BCEFA;
+	color2 = 0xF5A9B8;
+	color3 = 0xF5A9B8;
+	color4 = 0x5BCEFA;
 	if (DD_MOD)
 	{
 		color1 = 0;
@@ -59,10 +63,14 @@ void	mlx_draw(int i, int j ,t_image *img)
 		j = 0;
 		while (j <= HEIGHT)
 		{
-			if (j <= HEIGHT / 2)
+			if (j < HEIGHT / 4)
 				mlx_pxl(img, i, j, color1);
-			else
+			else if (j <= HEIGHT / 2)
 				mlx_pxl(img, i, j, color2);
+			else if (j < HEIGHT / 1.5)
+				mlx_pxl(img, i, j, color3);
+			else
+				mlx_pxl(img, i, j, color4);
 			j++;
 		}
 		i++;
