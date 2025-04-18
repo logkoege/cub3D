@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 19:20:29 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:04:33 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 
 # define WIDTH		1280
 # define HEIGHT		720
-# define DD_MOD		1
+# define DD_MOD		0
 
 typedef struct s_image
 {

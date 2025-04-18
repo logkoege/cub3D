@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 19:17:42 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:07:41 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	player_intructs(t_data *data, t_player *player)
 		player->angle += player->angle_speed;
 	if (player->angle > 2 * PI)
 		player->angle = 0;
-	if (player->angle < 0 )
+	if (player->angle < 0)
 		player->angle = 2 * PI;
 	player_camera(data, player);
 }

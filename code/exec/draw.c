@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 19:26:56 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:16:10 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void	draw_ray(t_data *data, t_player *player, double start_x, int i)
 		end = start_y + size;
 			while (start_y < end)
 		{
-			mlx_pxl(data->img, i, start_y, 0x0000FF);
+			mlx_pxl(data->img, i, start_y, 0xDDAAAA);
 			start_y++;
 		}
 	}

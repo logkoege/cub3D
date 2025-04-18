@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/17 17:22:13 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/18 21:12:49 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ void	mlx_pxl(t_image *img, int x, int y, int color)
 	char	*dst;
 
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
-		return;
+		return ;
 	dst = img->addr + (y * img->line_len + x * (img->bit_pxl / 8));
 	*(unsigned int *)dst = color;
 }
 
-void	mlx_draw(int i, int j , t_image *img)
+void	mlx_draw(int i, int j ,t_image *img)
 {
 	int	color1;
 	int	color2;
-	
-	color1 = 0x77B5FE;
+
+	color1 = 0xFF00FF;
 	color2 = 0x3A9D23;
 	if (DD_MOD)
 	{
@@ -74,25 +74,25 @@ void	draw_player(int x, int y, int p_size, int color, t_data *data)
 	int	i;
 
 	i = 0;
-	while(i <= p_size)
+	while (i <= p_size)
 	{
 		mlx_pxl(data->img, x + i, y, color);
 		i++;
 	}
 	i = 0;
-	while(i <= p_size)
+	while (i <= p_size)
 	{
 		mlx_pxl(data->img, x, y + i, color);
 		i++;
 	}
 	i = 0;
-	while(i <= p_size)
+	while (i <= p_size)
 	{
 		mlx_pxl(data->img, x + p_size, y + i, color);
 		i++;
 	}
 	i = 0;
-	while(i <= p_size)
+	while (i <= p_size)
 	{
 		mlx_pxl(data->img, x + i, y + p_size, color);
 		i++;
