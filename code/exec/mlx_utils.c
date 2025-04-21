@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 22:39:12 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/21 11:22:22 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	mlx_draw(int i, int j, t_image *img)
 	{
 		color1 = 0;
 		color2 = 0;
+		color3 = 0;
+		color4 = 0;
 	}
 	while (i <= WIDTH)
 	{

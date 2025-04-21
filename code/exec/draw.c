@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 22:40:32 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/21 11:28:56 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	draw_player_loop(t_data *data)
 	mlx_draw(0, 0, data->img);
 	if (DD_MOD)
 	{
-		draw_player(data->player->pos_x, data->player->pos_y, 10, 0xFFFFFF, data);
+		draw_player(data->player->pos_x,
+			data->player->pos_y, 10, 0xFFFFFF, data);
 		draw_map(data);
 	}
 	while (i < WIDTH)
@@ -96,7 +97,8 @@ void	draw_map(t_data *data)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == '1')
-				draw_player(j * S_SQUARE, i * S_SQUARE, S_SQUARE, 0x00FF00, data);
+				draw_player(j * S_SQUARE, i
+					* S_SQUARE, S_SQUARE, 0x00FF00, data);
 			j++;
 		}
 		i++;

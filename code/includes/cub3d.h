@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 22:28:44 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/21 11:30:46 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,50 +53,39 @@
 
 typedef struct s_image
 {
-	void	*img;
-	char	*addr;
-	int		bit_pxl;
-	int		line_len;
-	int		endian;
+	void			*img;
+	char			*addr;
+	int				bit_pxl;
+	int				line_len;
+	int				endian;
 }	t_image;
 
 typedef struct s_player
 {
-	double	angle;
-	double	pos_x;
-	double	pos_y;
-	double	cos_angle;
-	double	sin_angle;
-	double	angle_speed;
-	int		speed;
-	double	dir_x;
-	double	dir_y;
-	double	cam_plane_x;
-	double	cam_plane_y;
-	double	oldtime;
-	double	time;
-	double	camera_x;
-	double	raydir_x;
-	double	raydir_y;
-	struct s_image *img;
+	double			angle;
+	double			pos_x;
+	double			pos_y;
+	double			cos_angle;
+	double			sin_angle;
+	double			angle_speed;
+	int				speed;
+	struct s_image	*img;
 }	t_player;
 typedef struct s_data
 {
-	void	*mlx;
-	void	*win;
-	int frame;
-	bool	front;
-	bool	back;
-	bool	left;
-	bool	right;
-	bool	camera_left;
-	bool	camera_right;
-	char	**map;
-	struct s_image *img;
-	struct s_player *player;
+	void			*mlx;
+	void			*win;
+	int				frame;
+	bool			front;
+	bool			back;
+	bool			left;
+	bool			right;
+	bool			camera_left;
+	bool			camera_right;
+	char			**map;
+	struct s_image	*img;
+	struct _player	*player;
 }	t_data;
-
-
 
 ///////////////////////////////////__EXEC__////////////////////////////////////
 
