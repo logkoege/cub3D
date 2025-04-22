@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/21 11:30:46 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:52:00 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_data
 	bool			camera_right;
 	char			**map;
 	struct s_image	*img;
-	struct _player	*player;
+	struct s_player	*player;
 }	t_data;
 
 ///////////////////////////////////__EXEC__////////////////////////////////////

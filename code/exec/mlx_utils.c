@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/21 11:22:22 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/04/22 17:54:10 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,10 @@ void	mlx_draw(int i, int j, t_image *img)
 	int	color3;
 	int	color4;
 
-	color1 = 0x5BCEFA;
-	color2 = 0xF5A9B8;
-	color3 = 0xF5A9B8;
-	color4 = 0x5BCEFA;
+	color1 = 0x77B5FE;//0x5BCEFA;
+	color2 = 0x77B5FE;//0xF5A9B8;
+	color3 = 0x3A9D23;//0xF5A9B8;
+	color4 = 0x3A9D23;//0x5BCEFA;
 	if (DD_MOD)
 	{
 		color1 = 0;
