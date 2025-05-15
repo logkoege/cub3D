@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/21 11:28:56 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/05/14 22:32:45 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,25 @@ void	clear_img(t_data *data)
 void	map(t_data *data)
 {
 	int		i;
-	char	**map;
+	char	**map1;
 
 	i = 0;
-	map = malloc(sizeof(char *) * 11);
-	map[0] = "111111111111111";
-	map[1] = "100000000000001";
-	map[2] = "100000001000001";
-	map[3] = "100000000000001";
-	map[4] = "100001000000001";
-	map[5] = "100000010000001";
-	map[6] = "100000000100001";
-	map[7] = "100000001110001";
-	map[8] = "100000000100001";
-	map[9] = "111111111111111";
-	map[10] = NULL;
-	data->map = map;
-	while (data->map[i])
+	map1 = malloc(sizeof(char *) * 11);
+	map1[0] = "111111111111111";
+	map1[1] = "100000000000001";
+	map1[2] = "100000001000001";
+	map1[3] = "100000000000001";
+	map1[4] = "100001000000001";
+	map1[5] = "100000010000001";
+	map1[6] = "100000000100001";
+	map1[7] = "100000001110001";
+	map1[8] = "100000000100001";
+	map1[9] = "111111111111111";
+	map1[10] = NULL;
+	data->mapo = map1;
+	while (data->mapo[i])
 	{
-		printf("map[%d] = %s\n", i, map[i]);
+		printf("map[%d] = %s\n", i, map1[i]);
 		i++;
 	}
 }
@@ -91,12 +91,12 @@ void	draw_map(t_data *data)
 
 	i = 0;
 	j = 0;
-	while (data->map[i])
+	while (data->mapo[i])
 	{
 		j = 0;
-		while (data->map[i][j])
+		while (data->mapo[i][j])
 		{
-			if (data->map[i][j] == '1')
+			if (data->mapo[i][j] == '1')
 				draw_player(j * S_SQUARE, i
 					* S_SQUARE, S_SQUARE, 0x00FF00, data);
 			j++;

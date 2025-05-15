@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 18:20:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 22:37:25 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/05/14 22:33:01 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	line_to_wall(double px, double py, t_data *data)
 
 	x = px / S_SQUARE;
 	y = py / S_SQUARE;
-	if (data->map[y][x] == '1')
+	if (data->mapo[y][x] == '1')
 		return (true);
 	return (false);
 }

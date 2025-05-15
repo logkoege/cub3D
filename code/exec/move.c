@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/18 22:40:43 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/05/15 01:56:29 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,34 @@ void	player_camera(t_data *data, t_player *player)
 {
 	if (data->front)
 	{
-		player->pos_x += player->cos_angle * player->speed;
-		player->pos_y += player->sin_angle * player->speed;
+		if (!line_to_wall(player->pos_x + player->cos_angle * player->speed, player->pos_y + player->sin_angle * player->speed, data))
+		{
+			player->pos_x += player->cos_angle * player->speed;
+			player->pos_y += player->sin_angle * player->speed;
+		}
 	}
 	if (data->left)
 	{
-		player->pos_x += player->sin_angle * player->speed;
-		player->pos_y -= player->cos_angle * player->speed;
+		if (!line_to_wall(player->pos_x + player->sin_angle * player->speed, player->pos_y - player->cos_angle * player->speed, data))
+		{
+			player->pos_x += player->sin_angle * player->speed;
+			player->pos_y -= player->cos_angle * player->speed;
+		}
 	}
 	if (data->right)
 	{
-		player->pos_x -= player->sin_angle * player->speed;
-		player->pos_y += player->cos_angle * player->speed;
+		if (!line_to_wall(player->pos_x - player->sin_angle * player->speed, player->pos_y + player->cos_angle * player->speed, data))
+		{
+			player->pos_x -= player->sin_angle * player->speed;
+			player->pos_y += player->cos_angle * player->speed;
+		}
 	}
 	if (data->back)
 	{
-		player->pos_x -= player->cos_angle * player->speed;
-		player->pos_y -= player->sin_angle * player->speed;
+		if (!line_to_wall(player->pos_x - player->cos_angle * player->speed, player->pos_y - player->sin_angle * player->speed, data))
+		{
+			player->pos_x -= player->cos_angle * player->speed;
+			player->pos_y -= player->sin_angle * player->speed;
+		}
 	}
 }
