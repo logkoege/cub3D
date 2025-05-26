@@ -6,11 +6,68 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:14:28 by lloginov          #+#    #+#             */
-/*   Updated: 2025/05/26 15:49:56 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/05/26 18:15:04 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int	is_replace_char(t_data *data, int i, int j)
+{
+	if(data->map2[i][j] != '1' && data->map2[i][j] != '0' && data->map2[i][j]
+			!= '\0' && data->map2[i][j] != '\n' && data->map2[i][j] != 'N' &&
+				data->map2[i][j] != 'S' && data->map2[i][j] != 'E' &&
+					data->map2[i][j] != 'W')
+						return (1);
+	return (0);
+}
+
+void	check_player_count(t_data *data)
+{
+	int i;
+	int j;
+	int cmpt;
+
+	cmpt = 0;
+	i = 0;
+	j = 0;
+
+	while(data->map2[i])
+	{
+		j = 0;
+		while(data->map2[i][j])
+		{
+			if(data->map2[i][j] == 'N' || data->map2[i][j] == 'S' || data->map2[i][j] == 'E'
+					|| data->map2[i][j] == 'W')
+						cmpt++;
+			j++;
+		}
+		i++;
+	}
+	if(cmpt != 1)
+		free_map_exit(data, "Error : player error");
+}
+void check_empty_line(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+
+	while(data->map2[i])
+	{
+		while(data->map2[i][j])
+		{
+			if(data->map2[i][j] != '1' && data->map2[i][j] != '0')
+			{
+				
+			}
+
+		}
+		i++;
+	}
+}
 
 void	check_map_char(t_data *data)
 {
@@ -33,6 +90,7 @@ void	check_map_char(t_data *data)
 		}
 		i++;
 	}
+	check_player_count(data);
 }
 
 void	get_len_max(t_data *data)
@@ -49,15 +107,7 @@ void	get_len_max(t_data *data)
 	}
 }
 
-int	is_replace_char(t_data *data, int i, int j)
-{
-	if(data->map2[i][j] != '1' && data->map2[i][j] != '0' && data->map2[i][j]
-			!= '\0' && data->map2[i][j] != '\n' && data->map[i][j] != 'N' &&
-				data->map[i][j] != 'S' && data->map[i][j] != 'E' &&
-					data->map[i][j] != 'W')
-						return (1);
-	return (0);
-}
+
 
 void	set_to_one(t_data *data)
 {
@@ -71,11 +121,11 @@ void	set_to_one(t_data *data)
 
 	while(data->map2[i])
 	{
-		tmp = malloc(sizeof (char) * (data->map_len + 1));
+		tmp = malloc(sizeof (char) * (data->map_len + 2));
 		if(!tmp)
 			free_map_exit(data, "malloc error");
 		j = 0;
-		while(data->map2[i][j])
+		while(j != ft_strlen(data->map2[i]) - 2)
 		{
 			if(is_replace_char(data, i, j) == 1)
 			{
@@ -84,12 +134,21 @@ void	set_to_one(t_data *data)
 			else
 				tmp[j] = data->map2[i][j];
 			j++;
-		}0
+		}
+		while(j != data->map_len)
+		{
+			tmp[j] = '1';
+			j++;
+		}
+		tmp[j++] = '\n';
+		tmp[j] = '\0';
+		// printf("map = %s\n", tmp);
 		free(data->map2[i]);
 		data->map2[i] = ft_dup(tmp);
 		free(tmp);
 		i++;
 	}
+	print_map(data->map2);
 }
 
 void	map_alloc(t_data *data)
