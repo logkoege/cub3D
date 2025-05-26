@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:40:57 by lloginov          #+#    #+#             */
-/*   Updated: 2025/04/15 17:53:10 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:44:59 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void assign_colors2(t_data *data, char **split)
 	green = ft_dup(split[1]);
 	blue = ft_dup(split[2]);
 	free_tab(split);
+	check_is_num(data, red, green, blue);
 	hex = rgb_to_hex(check_red(data, red), check_green(data, green), check_blue(data, blue));
 	data->roof_color = hex;
 }
@@ -35,8 +36,10 @@ void roof_color_arg(t_data *data, char *arg)
 	char **split_color;
 
 	i = 0;
-	while (ft_isdigit(arg[i]) == 0)
+	while (arg[i] && ft_isdigit(arg[i]) == 0)
 		i++;
+	if(i == ft_strlen(arg))
+		free_exit(data, "Error : roof color empty");
 	color = ft_sub(arg, i, ft_strlen(arg));
 	if (!color)
 		free_exit(data, "malloc error");
@@ -47,6 +50,7 @@ void roof_color_arg(t_data *data, char *arg)
 		free_exit(data, "malloc error");
 	}
 	free(color);
+	i = 0;
 	while (split_color[i])
 		i++;
 	if (i != 3)

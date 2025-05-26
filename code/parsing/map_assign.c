@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 18:16:22 by lloginov          #+#    #+#             */
-/*   Updated: 2025/04/15 19:44:24 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/05/22 09:15:22 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,81 +15,67 @@
 int	is_color(t_data *data, int i)
 {
 	if (ft_strcmp_clor(data->map[i], "F") == 0)
-		return(1);
+		return (1);
 	else if (ft_strcmp_clor(data->map[i], "C") == 0)
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }
 
-int is_file(t_data *data, int i)
+int	is_file(t_data *data, int i)
 {
-	if(ft_strcmp_pos(data->map[i], "SO") == 0)
-		return(1);
-	else if(ft_strcmp_pos(data->map[i], "NO") == 0)
-		return(1);
-	else if(ft_strcmp_pos(data->map[i], "WE") == 0)
-		return(1);
-	else if(ft_strcmp_pos(data->map[i], "EA") == 0)
-		return(1);
-	return(0);
+	if (ft_strcmp_pos(data->map[i], "SO") == 0)
+		return (1);
+	else if (ft_strcmp_pos(data->map[i], "NO") == 0)
+		return (1);
+	else if (ft_strcmp_pos(data->map[i], "WE") == 0)
+		return (1);
+	else if (ft_strcmp_pos(data->map[i], "EA") == 0)
+		return (1);
+	return (0);
 }
+
 void	true_map_dup(t_data *data, int i)
 {
-	int j;
-	int k;
-	
-	i = 0;
+	int	j;
+	int	k;
+
 	j = 0;
 	k = i;
-	while(data->map[i])
+	while (data->map[i])
 		i++;
 	data->truemap = malloc(sizeof(char *) * (i - k + 1));
-	if(!data->truemap)
+	if (!data->truemap)
 		free_exit(data, "Error : malloc error in assign map");
-	while(k < i)
+	while (k < i)
 	{
-		data->truemap[j] = ft_dup(data->map[k]);		
-		if(!data->truemap[j])
+		data->truemap[j] = data->map[k];
+		if (!data->truemap[j])
 			free_exit(data, "Error : Malloc error");
 		j++;
 		k++;
 	}
+	data->map2 = malloc(sizeof(char *) * (j + 1));
+	if(!data->map2)
+		print_exit("Error : malloc map2 error");
 	data->truemap[j] = NULL;
+	data->true_map_len = j;
+	map_alloc(data);
 }
 
-
-void	check_true_map(t_data *data)
+int	is_map_char(t_data *data, int i, int j)
 {
-	int i;
-	int j;
-
-	i = 0;
-	j = 0;
-	while(data->truemap[i])
-	{
-		j = 0;
-		while(data->truemap[i][j])
-		{
-			if(data->truemap[i][j] != '1' && data->truemap[i][j] != '0' && 
-					data->truemap[i][j] != 'N' && data->truemap[i][j] != 'S' && data->truemap[i][j] != 'W' && data->truemap[i][j] != 'E')
-					data->truemap[i][j] = '1';
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-
-	while(data->map[i])
-	{
-		printf("map : %s\n", data->truemap[i]);
-		i++;
-	}
+	if (data->truemap[i][j] != '1' && data->truemap[i][j] != '0'
+		&& data->truemap[i][j] != 'N' && data->truemap[i][j] != 'S'
+			&& data->truemap[i][j] != 'W' && data->truemap[i][j] != 'E'
+				&& data->truemap[i][j] != '\n' && data->truemap[i][j] != ' ' &&  data->truemap[i][j] != '	')
+		return (1);
+	return (0);
 }
-
 void	assign_map(t_data *data)
 {
 	int i;
 
+	i = 0;
 	while(data->map[i])
 	{
 		if(is_file(data, i) == 1 || is_color(data, i) == 1)
@@ -100,5 +86,4 @@ void	assign_map(t_data *data)
 			break ;
 	}
 	true_map_dup(data, i);
-	check_true_map(data);
 }

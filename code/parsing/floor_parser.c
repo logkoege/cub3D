@@ -6,20 +6,20 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:47:20 by lloginov          #+#    #+#             */
-/*   Updated: 2025/04/15 17:53:10 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/04/22 16:19:09 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int rgb_to_hex(int r, int g, int b)
+int	rgb_to_hex(int r, int g, int b)
 {
-	return ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
+	return (((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF));
 }
 
-int check_red(t_data *data, char *red)
+int	check_red(t_data *data, char *red)
 {
-	int redd;
+	int	redd;
 
 	redd = ft_atoi(red);
 	if (redd < 0 || redd > 255)
@@ -28,12 +28,12 @@ int check_red(t_data *data, char *red)
 		free(red);
 	}
 	free(red);
-	return(redd);
+	return (redd);
 }
 
-int check_green(t_data *data, char *green)
+int	check_green(t_data *data, char *green)
 {
-	int greenn;
+	int	greenn;
 
 	greenn = ft_atoi(green);
 	if (greenn < 0 || greenn > 255)
@@ -45,9 +45,9 @@ int check_green(t_data *data, char *green)
 	return (greenn);
 }
 
-int check_blue(t_data *data, char *blue)
+int	check_blue(t_data *data, char *blue)
 {
-	int bluee;
+	int	bluee;
 
 	bluee = ft_atoi(blue);
 	if (bluee < 0 || bluee > 255)
@@ -59,30 +59,70 @@ int check_blue(t_data *data, char *blue)
 	return (bluee);
 }
 
-void assign_colors(t_data *data, char **split)
+void	free_rgb(t_data *data, char *red, char *green, char *blue)
 {
-	char *red;
-	char *green;
-	char *blue;
-	int hex;
+	free(red);
+	free(green);
+	free(blue);
+	free_exit(data, "Error : colors should be written with numbers only");
+	return ;
+}
+
+void	check_is_num(t_data *data, char *red, char *green, char *blue)
+{
+	int	i;
+
+	i = 0;
+	while (red[i])
+	{
+		if (ft_isdigit(red[i]) == 0)
+			free_rgb(data, red, green, blue);
+		i++;
+	}
+	i = 0;
+	while (green[i])
+	{
+		if (ft_isdigit(green[i]) == 0)
+			free_rgb(data, red, green, blue);
+		i++;
+	}
+	i = 0;
+	while (blue[i])
+	{
+		if (ft_isdigit(blue[i]) == 0)
+			free_rgb(data, red, green, blue);
+		i++;
+	}
+}
+
+void	assign_colors(t_data *data, char **split)
+{
+	char	*red;
+	char	*green;
+	char	*blue;
+	int		hex;
 
 	red = ft_dup(split[0]);
 	green = ft_dup(split[1]);
 	blue = ft_dup(split[2]);
+	check_is_num(data, red, green, blue);
 	free_tab(split);
-	hex = rgb_to_hex(check_red(data, red), check_green(data, green), check_blue(data, blue));
+	hex = rgb_to_hex(check_red(data, red),
+			check_green(data, green), check_blue(data, blue));
 	data->floor_color = hex;
 }
 
-void floor_color_arg(t_data *data, char *arg)
+void	floor_color_arg(t_data *data, char *arg)
 {
-	int i;
-	char *color;
-	char **split_color;
+	int		i;
+	char	*color;
+	char	**split_color;
 
 	i = 0;
-	while (ft_isdigit(arg[i]) == 0)
+	while (arg[i] && ft_isdigit(arg[i]) == 0)
 		i++;
+	if (i == ft_strlen(arg))
+		free_exit(data, "Error : floor color empty");
 	color = ft_sub(arg, i, ft_strlen(arg));
 	if (!color)
 		free_exit(data, "malloc error");

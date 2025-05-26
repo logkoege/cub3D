@@ -6,29 +6,12 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:28:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/15 19:11:20 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/05/22 09:00:04 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	print_exit(char *str)
-{
-	printf("%s\n", str);
-	exit(1);
-}
-
-int ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	if(!str)
-		return(0);
-	while(str[i])
-		i++;
-	return(i);
-}
 
 void	init_var(t_data *data)
 {
@@ -38,6 +21,8 @@ void	init_var(t_data *data)
 	data->file_south = NULL;
 	data->file_west = NULL;
 	data->truemap = NULL;
+	data->true_map_len = 0;
+	data->map_len = 0;
 	return ;
 }
 
@@ -47,8 +32,8 @@ char	*ft_dup(char *s1)
 	int		i;
 
 	i = 0;
-	if(!s1)
-		return(NULL);
+	if (!s1)
+		return (NULL);
 	s2 = malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!s2)
 		return (NULL);
@@ -63,21 +48,28 @@ char	*ft_dup(char *s1)
 
 int	ft_strcmp_pos(char *s1, char *s2)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	j = 0;
 	i = 0;
 	i++;
-	if(!s1 || !s2)
-		return(1);
-	while(s1[j])
+	if (!s1 || !s2)
+		return (1);
+	while (s1[j])
 	{
-		if(s1[j] == s2[0] && s1[j + 1] == s2[1])
-			return(0);
+		if (s1[j] == s2[0] && s1[j + 1] == s2[1])
+			return (0);
 		j++;
 	}
-	return(1);
+	return (1);
+}
+
+char	*ret_sub(char *str, int j)
+{
+	j--;
+	str[j] = '\0';
+	return (str);
 }
 
 char	*ft_sub(char *s, int start, int len)
@@ -85,6 +77,7 @@ char	*ft_sub(char *s, int start, int len)
 	int		i;
 	int		j;
 	char	*str;
+	int		lev;
 
 	i = 0;
 	j = 0;
@@ -92,7 +85,6 @@ char	*ft_sub(char *s, int start, int len)
 		return (NULL);
 	if (ft_strlen(s) < start || start == 0)
 		return (ft_dup(""));
-	int lev;
 	lev = len - start;
 	str = malloc(sizeof(char) * (lev + 1));
 	if (!str)
@@ -106,77 +98,6 @@ char	*ft_sub(char *s, int start, int len)
 		}
 		i++;
 	}
-	j--;
-	str[j] = '\0';
-	return (str);
+	return (ret_sub(str, j));
 }
 
-void	free_all(t_data *data)
-{
-	int i;
-
-	i = 0;
-
-	while(data->map[i])
-	{
-		if(data->map[i])
-			free(data->map[i]);
-		i++;
-	}
-	free(data->map);
-	if(data->file_north)
-		free(data->file_north);
-	if(data->file_east)
-		free(data->file_east);
-	if(data->file_south)
-		free(data->file_south);
-	if(data->file_west)
-		free(data->file_west);
-	i = 0;
-	while(data->truemap[i])
-	{
-		if(data->truemap[i])
-			free(data->truemap[i]);
-		i++;
-	}
-	free(data->truemap);
-}
-
-void	free_exit(t_data *data, char *str)
-{
-	free_all(data);
-	print_exit(str);
-}
-
-
-int	ft_is_ws(int i)
-{
-	if ((i >= 9 && i <= 13) || i == ' ')
-		return (1);
-	return (0);
-}
-
-int	ft_atoi(char *str)
-{
-	int	i;
-	int	sign;
-	int	number;
-
-	i = 0;
-	sign = 1;
-	number = 0;
-	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -sign;
-		i++;
-	}
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
-	{
-		number = number * 10 + (str[i] - 48);
-		i++;
-	}
-	return (number * sign);
-}

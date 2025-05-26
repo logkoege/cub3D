@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/04/15 18:27:34 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/05/22 09:06:51 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@
 # define WEST_CAMERA	'W'
 # define SOUTH_CAMERA	'S'
 
-
-
-
 # define ESC		65307
 # define W			119
 # define A			97
@@ -48,21 +45,19 @@
 
 typedef struct s_data
 {
-	char 	**map;
-	char 	**truemap;
+	char	**map;
+	char	**truemap;
+	char	**map2;
+	int		map_len;
+	int		true_map_len;
 	int		floor_color;
 	int		roof_color;
-	char 	*file_north;
-	char 	*file_south;
-	char 	*file_east;
-	char 	*file_west;
+	char	*file_north;
+	char	*file_south;
+	char	*file_east;
+	char	*file_west;
 	int		file_size;
 }	t_data;
-
-typedef struct s_img
-{
-	
-}	t_img;
 
 //map
 void	assign_map(t_data *data);
@@ -71,7 +66,6 @@ void	assign_map(t_data *data);
 
 void	map_name(char *map);
 int		parsing(t_data *data, int ac, char **av);
-
 
 //utils
 void	init_var(t_data *data);
@@ -84,7 +78,7 @@ void	free_all(t_data *data);
 void	free_exit(t_data *data, char *str);
 int		ft_is_ws(int i);
 char	**ft_spliter(char *s, char c);
-int	ft_atoi(char *str);
+int		ft_atoi(char *str);
 
 //wals_utils
 int		check_arg(char *arg, char f, char s);
@@ -96,19 +90,25 @@ int		ft_isdigit(int c);
 int		ft_strcmp_clor(char *s1, char *s2);
 int		find_char(char *str, char c);
 void	free_tab(char **tab);
-int check_red(t_data *data, char *red);
-int check_green(t_data *data, char *green);
-int check_blue(t_data *data, char *blue);
-int rgb_to_hex(int r, int g, int b);
+int		check_red(t_data *data, char *red);
+int		check_green(t_data *data, char *green);
+int		check_blue(t_data *data, char *blue);
+int		rgb_to_hex(int r, int g, int b);
+void	check_is_num(t_data *data, char *red, char *green, char *blue);
+void	free_rgb(t_data *data, char *red, char *green, char *blue);
+
+//check_map
+void	map_alloc(t_data *data);
+int	is_map_char(t_data *data, int i, int j);
 
 //roof color
-void roof_color_arg(t_data *data, char *arg);
+void 	roof_color_arg(t_data *data, char *arg);
 
 //check_file
-void		wall_files_check(t_data *data);
+void	wall_files_check(t_data *data);
 
 //color check
-void color_check(t_data *data);
+void	color_check(t_data *data);
 
 //gnl
 char	*get_next_line(int fd);
@@ -120,5 +120,8 @@ char	*ft_strcpy(char *a, char *b);
 char	*ft_strchr(const char *s, int c);
 char	*ft_split(char *src, char car);
 char	*ft_ligne(int fd, char *ligne, char *buffer);
+
+void	print_map(char **map);
+void	free_map_exit(t_data *data, char *str);
 
 #endif

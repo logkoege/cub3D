@@ -6,14 +6,13 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:48:28 by lloginov          #+#    #+#             */
-/*   Updated: 2025/04/15 17:48:55 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/04/22 16:13:38 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
-int ft_isdigit(int c)
+int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
@@ -21,9 +20,9 @@ int ft_isdigit(int c)
 		return (0);
 }
 
-int ft_strcmp_clor(char *s1, char *s2)
+int	ft_strcmp_clor(char *s1, char *s2)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s1[i])
@@ -35,22 +34,23 @@ int ft_strcmp_clor(char *s1, char *s2)
 	return (1);
 }
 
-int find_char(char *str, char c)
+int	find_char(char *str, char c)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
 		if (str[i] == c)
-			break;
+			break ;
 		i++;
 	}
 	return (i);
 }
-void free_tab(char **tab)
+
+void	free_tab(char **tab)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (tab[i])
