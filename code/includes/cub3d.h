@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/05/15 01:59:21 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/06/06 00:28:23 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,14 @@ void	clear_img(t_data *data);
 void	map(t_data *data);
 void	draw_map(t_data *data);
 void	draw_ray(t_data *data, t_player *player, double start_x, int i);
+void	draw_minimap(t_data *data);
 
 // ray.c
 bool	line_to_wall(double px, double py, t_data *data);
 double	sqr(double a);
 double	squirt(double x, double y, double x1, double x2);
+
+// minimap.c
 
 ///////////////////////////////////_PARSING_///////////////////////////////////
 

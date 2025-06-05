@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/05/14 22:32:45 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/06/06 00:36:00 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ int	draw_player_loop(t_data *data)
 		i++;
 		start_x += fraction;
 	}
+	if (!DD_MOD)
+		draw_minimap(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }
+
 
 void	clear_img(t_data *data)
 {
@@ -129,7 +132,8 @@ void	draw_ray(t_data *data, t_player *player, double start_x, int i)
 	}
 	if (!DD_MOD)
 	{
-		distance = squirt(ray_x, player->pos_x, ray_y, player->pos_y);
+		distance = squirt(ray_x, player->pos_x, ray_y, player->pos_y)
+			* cos(start_x - player->angle);
 		size = ((WIDTH / 2) * (S_SQUARE / distance));
 		start_y = (HEIGHT - size) / 2;
 		end = start_y + size;
@@ -140,3 +144,47 @@ void	draw_ray(t_data *data, t_player *player, double start_x, int i)
 		}
 	}
 }
+
+void	draw_minimap(t_data *data)
+{
+	int	i;
+	int	j;
+	int	offset_x;
+	int	offset_y;
+	int	scale;
+	int	minimap_w;
+	int	minimap_h;
+
+	scale = S_SQUARE / 4;
+	offset_x = WIDTH - (15 * scale) - 10;
+	offset_y = 10;
+	minimap_w = 15 * scale;
+	minimap_h = 10 * scale;
+	i = 0;
+	while (i < minimap_h)
+	{
+		j = 0;
+		while (j < minimap_w)
+		{
+			mlx_pxl(data->img, offset_x + j, offset_y + i, 0x111111);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	while (data->mapo[i])
+	{
+		j = 0;
+		while (data->mapo[i][j])
+		{
+			if (data->mapo[i][j] == '1')
+				draw_player(j * scale + offset_x, i * scale + offset_y,
+					scale, 0x00FF00, data);
+			j++;
+		}
+		i++;
+	}
+	draw_player(data->player->pos_x / 4 + offset_x,
+		data->player->pos_y / 4 + offset_y, scale / 2, 0xFF0000, data);
+}
+
