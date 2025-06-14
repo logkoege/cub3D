@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:14:28 by lloginov          #+#    #+#             */
-/*   Updated: 2025/05/26 18:15:04 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/06/06 00:02:48 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,27 +47,41 @@ void	check_player_count(t_data *data)
 	if(cmpt != 1)
 		free_map_exit(data, "Error : player error");
 }
-void check_empty_line(t_data *data)
+void	check_empty_line(t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
+	int	has_content;
 
 	i = 0;
-	j = 0;
-
-	while(data->map2[i])
+	while (data->map2[i])
 	{
-		while(data->map2[i][j])
+		j = 0;
+		has_content = 0;
+		while (data->map2[i][j])
 		{
-			if(data->map2[i][j] != '1' && data->map2[i][j] != '0')
-			{
-				
-			}
-
+			if (data->map2[i][j] == '1' || data->map2[i][j] == '0'
+				|| data->map2[i][j] == 'N' || data->map2[i][j] == 'S'
+				|| data->map2[i][j] == 'E' || data->map2[i][j] == 'W')
+				has_content = 1;
+			j++;
 		}
+		if (has_content == 0)
+			free_map_exit(data, "Error : empty line in map");
 		i++;
 	}
 }
+
+
+// void	check_walls(t_data *data)
+// {
+// 	int i;
+// 	int j;
+
+// 	i = 0;
+// 	j = 0;
+	
+// }
 
 void	check_map_char(t_data *data)
 {
