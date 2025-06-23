@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/06/06 00:28:23 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:30:57 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,12 @@ int		ft_close(t_data *data);
 void	player_intructs(t_data *data, t_player *player);
 void	easter_egg(void);
 void	player_camera(t_data *data, t_player *player);
+void	player_camera_2(t_data *data, t_player *player);
 
-void	draw_player(int x, int y, int p_size, int color, t_data *data);
+void	draw_player(int x, int y, t_data *data);
+void	draw_player2(int x, int y, t_data *data);
+void	draw_player3(int x, int y, t_data *data);
+void	draw_player4(int x, int y, t_data *data);
 int		draw_player_loop(t_data *data);
 
 // utils2.c

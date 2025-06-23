@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/06/06 00:36:00 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:31:26 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ int	draw_player_loop(t_data *data)
 	mlx_draw(0, 0, data->img);
 	if (DD_MOD)
 	{
-		draw_player(data->player->pos_x,
-			data->player->pos_y, 10, 0xFFFFFF, data);
+		draw_player(data->player->pos_x, data->player->pos_y, data);
 		draw_map(data);
 	}
 	while (i < WIDTH)
@@ -40,7 +39,6 @@ int	draw_player_loop(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
 	return (0);
 }
-
 
 void	clear_img(t_data *data)
 {
@@ -100,8 +98,8 @@ void	draw_map(t_data *data)
 		while (data->mapo[i][j])
 		{
 			if (data->mapo[i][j] == '1')
-				draw_player(j * S_SQUARE, i
-					* S_SQUARE, S_SQUARE, 0x00FF00, data);
+				draw_player2(j * S_SQUARE, i
+					* S_SQUARE, data);
 			j++;
 		}
 		i++;
@@ -178,13 +176,12 @@ void	draw_minimap(t_data *data)
 		while (data->mapo[i][j])
 		{
 			if (data->mapo[i][j] == '1')
-				draw_player(j * scale + offset_x, i * scale + offset_y,
-					scale, 0x00FF00, data);
+				draw_player3(j * scale + offset_x,
+					i * scale + offset_y, data);
 			j++;
 		}
 		i++;
 	}
-	draw_player(data->player->pos_x / 4 + offset_x,
-		data->player->pos_y / 4 + offset_y, scale / 2, 0xFF0000, data);
+	draw_player4(data->player->pos_x / 4 + offset_x,
+		data->player->pos_y / 4 + offset_y, data);
 }
-

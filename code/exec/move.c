@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/05/15 01:56:29 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:15:46 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ void	player_camera(t_data *data, t_player *player)
 {
 	if (data->front)
 	{
-		if (!line_to_wall(player->pos_x + player->cos_angle * player->speed, player->pos_y + player->sin_angle * player->speed, data))
+		if (!line_to_wall(player->pos_x + player->cos_angle * player->speed,
+				player->pos_y + player->sin_angle * player->speed, data))
 		{
 			player->pos_x += player->cos_angle * player->speed;
 			player->pos_y += player->sin_angle * player->speed;
@@ -46,15 +47,22 @@ void	player_camera(t_data *data, t_player *player)
 	}
 	if (data->left)
 	{
-		if (!line_to_wall(player->pos_x + player->sin_angle * player->speed, player->pos_y - player->cos_angle * player->speed, data))
+		if (!line_to_wall(player->pos_x + player->sin_angle * player->speed,
+				player->pos_y - player->cos_angle * player->speed, data))
 		{
 			player->pos_x += player->sin_angle * player->speed;
 			player->pos_y -= player->cos_angle * player->speed;
 		}
 	}
+	player_camera_2(data, player);
+}
+
+void	player_camera_2(t_data *data, t_player *player)
+{
 	if (data->right)
 	{
-		if (!line_to_wall(player->pos_x - player->sin_angle * player->speed, player->pos_y + player->cos_angle * player->speed, data))
+		if (!line_to_wall(player->pos_x - player->sin_angle * player->speed,
+				player->pos_y + player->cos_angle * player->speed, data))
 		{
 			player->pos_x -= player->sin_angle * player->speed;
 			player->pos_y += player->cos_angle * player->speed;
@@ -62,7 +70,8 @@ void	player_camera(t_data *data, t_player *player)
 	}
 	if (data->back)
 	{
-		if (!line_to_wall(player->pos_x - player->cos_angle * player->speed, player->pos_y - player->sin_angle * player->speed, data))
+		if (!line_to_wall(player->pos_x - player->cos_angle * player->speed,
+				player->pos_y - player->sin_angle * player->speed, data))
 		{
 			player->pos_x -= player->cos_angle * player->speed;
 			player->pos_y -= player->sin_angle * player->speed;

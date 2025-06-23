@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/06/02 20:19:05 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:08:27 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,65 +46,25 @@ void	mlx_draw(int i, int j, t_image *img)
 {
 	int	color1;
 	int	color2;
-	int	color3;
-	int	color4;
 
-	color1 = 0x77B5FE;//0x5BCEFA;
-	color2 = 0x77B5FE;//0xF5A9B8;
-	color3 = 0x3A9D23;//0xF5A9B8;
-	color4 = 0x3A9D23;//0x5BCEFA;
+	color1 = 0x77B5FE;
+	color2 = 0x3A9D23;
 	if (DD_MOD)
 	{
 		color1 = 0;
 		color2 = 0;
-		color3 = 0;
-		color4 = 0;
 	}
 	while (i <= WIDTH)
 	{
 		j = 0;
 		while (j <= HEIGHT)
 		{
-			if (j < HEIGHT / 4)
+			if (j <= HEIGHT / 2)
 				mlx_pxl(img, i, j, color1);
-			else if (j <= HEIGHT / 2)
-				mlx_pxl(img, i, j, color2);
-			else if (j < HEIGHT / 1.5)
-				mlx_pxl(img, i, j, color3);
 			else
-				mlx_pxl(img, i, j, color4);
+				mlx_pxl(img, i, j, color2);
 			j++;
 		}
-		i++;
-	}
-}
-
-void	draw_player(int x, int y, int p_size, int color, t_data *data)
-{
-	int	i;
-
-	i = 0;
-	while (i <= p_size)
-	{
-		mlx_pxl(data->img, x + i, y, color);
-		i++;
-	}
-	i = 0;
-	while (i <= p_size)
-	{
-		mlx_pxl(data->img, x, y + i, color);
-		i++;
-	}
-	i = 0;
-	while (i <= p_size)
-	{
-		mlx_pxl(data->img, x + p_size, y + i, color);
-		i++;
-	}
-	i = 0;
-	while (i <= p_size)
-	{
-		mlx_pxl(data->img, x + i, y + p_size, color);
 		i++;
 	}
 }
