@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:14:28 by lloginov          #+#    #+#             */
-/*   Updated: 2025/06/23 14:14:53 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:35:51 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,54 @@ void	check_walls(t_data *data)
 	i = 0;
 	j = 0;
 	
-	while(data->map2[0])
+	while(data->map2[0][j])
 	{
-		if(data->map2[0][j])
-		
+		if(data->map2[0][j] != '1' && data->map2[0][j] != '\n')
+			free_map_exit(data, "Error : fisrt line not surounded ");
+		j++;
+	}
+
+	j = 0;
+	while(data->map2[i])
+		i++;
+	i--;
+	if(ft_strlen(data->map2[i]) == 1)
+		free_map_exit(data, "Error : last line not surrounded");		
+	while(data->map2[i][j])
+	{
+		if(data->map2[i][j] != '1' && data->map2[i][j] != '\n')
+			free_map_exit(data, "Error : last line not surounded ");
+		j++;
+	}
+}
+
+int is_char(char s)
+{
+	if(s == '0' || s == 'N' || s == 'E' || s == 'S' || s == 'W')
+		return (1);
+	return (0);
+}
+
+void	check_side(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (data->map2[i])
+	{
+		j = 0;
+		while (data->map2[i][j] == ' ' || data->map2[i][j] == '\t')
+			j++;
+		if (data->map2[i][j] != '1')
+			free_map_exit(data, "Erreur : walls error");
+		j = ft_strlen(data->map2[i]) - 1;
+		while (j > 0 && (data->map2[i][j] == ' ' || data->map2[i][j] == '\t'
+				|| data->map2[i][j] == '\n'))
+			j--;
+		if (data->map2[i][j] != '1')
+			free_map_exit(data, "Erreur : walls error");
+		i++;
 	}
 }
 
@@ -111,6 +155,8 @@ void	check_map_char(t_data *data)
 	}
 	check_player_count(data);
 	check_walls(data);
+	check_side(data);
+
 }
 
 void	get_len_max(t_data *data)
