@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:14:28 by lloginov          #+#    #+#             */
-/*   Updated: 2025/06/06 00:02:48 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/06/23 14:14:53 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,20 @@ void	check_empty_line(t_data *data)
 }
 
 
-// void	check_walls(t_data *data)
-// {
-// 	int i;
-// 	int j;
+void	check_walls(t_data *data)
+{
+	int i;
+	int j;
 
-// 	i = 0;
-// 	j = 0;
+	i = 0;
+	j = 0;
 	
-// }
+	while(data->map2[0])
+	{
+		if(data->map2[0][j])
+		
+	}
+}
 
 void	check_map_char(t_data *data)
 {
@@ -105,6 +110,7 @@ void	check_map_char(t_data *data)
 		i++;
 	}
 	check_player_count(data);
+	check_walls(data);
 }
 
 void	get_len_max(t_data *data)
@@ -131,7 +137,7 @@ void	set_to_one(t_data *data)
 
 	i = 0;
 	j = 0;
-	printf("data->map : %d\n\n", data->map_len);
+	printf("data->map : %d\n\n", data->true_map_len);
 
 	while(data->map2[i])
 	{
@@ -139,7 +145,7 @@ void	set_to_one(t_data *data)
 		if(!tmp)
 			free_map_exit(data, "malloc error");
 		j = 0;
-		while(j != ft_strlen(data->map2[i]) - 2)
+		while(j != ft_strlen(data->map2[i]) - 1)
 		{
 			if(is_replace_char(data, i, j) == 1)
 			{
@@ -179,5 +185,6 @@ void	map_alloc(t_data *data)
 	get_len_max(data);
 	check_map_char(data);
 	set_to_one(data);
+
 	// print_map(data->map2);
 }
