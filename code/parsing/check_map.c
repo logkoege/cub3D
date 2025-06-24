@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:14:28 by lloginov          #+#    #+#             */
-/*   Updated: 2025/06/23 17:35:51 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/06/24 23:23:12 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,6 @@ void	check_walls(t_data *data)
 	}
 }
 
-int is_char(char s)
-{
-	if(s == '0' || s == 'N' || s == 'E' || s == 'S' || s == 'W')
-		return (1);
-	return (0);
-}
-
 void	check_side(t_data *data)
 {
 	int	i;
@@ -131,6 +124,8 @@ void	check_side(t_data *data)
 		i++;
 	}
 }
+
+
 
 void	check_map_char(t_data *data)
 {
@@ -185,7 +180,7 @@ void	set_to_one(t_data *data)
 	j = 0;
 	printf("data->map : %d\n\n", data->true_map_len);
 
-	while(data->map2[i])
+	while (data->map2[i])
 	{
 		tmp = malloc(sizeof (char) * (data->map_len + 2));
 		if(!tmp)
