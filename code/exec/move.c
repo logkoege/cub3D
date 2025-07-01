@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/06/24 00:15:46 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/06/29 18:38:08 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ void	player_intructs(t_data *data, t_player *player)
 	if (player->angle < 0)
 		player->angle = 2 * PI;
 	player_camera(data, player);
-}
-
-void	easter_egg(void)
-{
-	printf("tp dans une piece ou il y a tourpal tt nue\n");
 }
 
 void	player_camera(t_data *data, t_player *player)

@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/06/24 00:30:57 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/01 20:30:00 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define EAST_CAMERA	'E'
 # define WEST_CAMERA	'W'
 # define SOUTH_CAMERA	'S'
-# define EASTER_EGG		'G'
 
 # define ESC		65307
 # define W			119
@@ -41,8 +40,13 @@
 # define D			100
 # define G			103
 
+# define NORTH		0
+# define SOUTH		1
+# define WEST 		2
+# define EAST 		3
+
 # define PI			3.14159265359
-# define S_SQUARE		64
+# define S_SQUARE	64
 
 # define RIGHT		65363
 # define LEFT		65361
@@ -50,6 +54,18 @@
 # define WIDTH		1280
 # define HEIGHT		720
 # define DD_MOD		0
+
+typedef struct s_tex
+{
+	void			*textures[4];
+	int				tex_height;
+	int				tex_width;
+	void			*img;
+	char			*addr[4];
+	int				bpp;
+	int				line_len;
+	int				endian;
+}	t_tex;
 
 typedef struct s_image
 {
@@ -73,6 +89,11 @@ typedef struct s_player
 }	t_player;
 typedef struct s_data
 {
+	int				minimap_w;
+	int				minimap_h;
+	int				start_y;
+	int				end;
+	double			distance;
 	void			*mlx;
 	void			*win;
 	int				frame;
@@ -83,8 +104,15 @@ typedef struct s_data
 	bool			camera_left;
 	bool			camera_right;
 	char			**mapo;
+	int				side;
+	double			ray_dir_x;
+	double			ray_dir_y;
+	double			wall_x;
+	double			wall_y;
+	int				wall_dir;
 	struct s_image	*img;
 	struct s_player	*player;
+	struct s_tex	*tex;
 }	t_data;
 
 ///////////////////////////////////__EXEC__////////////////////////////////////
@@ -102,7 +130,6 @@ int		ft_close(t_data *data);
 
 // move.c
 void	player_intructs(t_data *data, t_player *player);
-void	easter_egg(void);
 void	player_camera(t_data *data, t_player *player);
 void	player_camera_2(t_data *data, t_player *player);
 
@@ -121,15 +148,25 @@ int		draw_player_loop(t_data *data);
 void	clear_img(t_data *data);
 void	map(t_data *data);
 void	draw_map(t_data *data);
-void	draw_ray(t_data *data, t_player *player, double start_x, int i);
-void	draw_minimap(t_data *data);
 
 // ray.c
 bool	line_to_wall(double px, double py, t_data *data);
 double	sqr(double a);
 double	squirt(double x, double y, double x1, double x2);
+void	ray(t_data *data, int i, int size);
 
 // minimap.c
+void	draw_ray(t_data *data, double start_x, int i);
+void	draw_minimap(t_data *data);
+void	draw_minimap_end(t_data *data, int x, int y);
+
+// texture.c
+int		get_wall_dir(int side, double ray_dir_x, double ray_dir_y);
+void	load_textures(t_tex *tex, t_data *data);
+
+void	draw_textured_wall(t_data *d, int x, int wall_h);
+void	draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir);
+int		get_tex_color(t_tex *tex, int dir, int x, int y);
 
 ///////////////////////////////////_PARSING_///////////////////////////////////
 

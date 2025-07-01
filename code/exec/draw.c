@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/06/24 00:31:26 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:10:00 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	draw_player_loop(t_data *data)
 	}
 	while (i < WIDTH)
 	{
-		draw_ray(data, data->player, start_x, i);
+		draw_ray(data, start_x, i);
 		i++;
 		start_x += fraction;
 	}
@@ -106,21 +106,54 @@ void	draw_map(t_data *data)
 	}
 }
 
-void	draw_ray(t_data *data, t_player *player, double start_x, int i)
+// void	draw_ray(t_data *data, double start_x, int i)
+// {
+// 	double	ray_x;
+// 	double	ray_y;
+// 	double	cos2;
+// 	double	sin2;
+// 	double	size;
+
+// 	cos2 = cos(start_x);
+// 	sin2 = sin(start_x);
+// 	ray_x = data->player->pos_x;
+// 	ray_y = data->player->pos_y;
+// 	while (!line_to_wall(ray_x, ray_y, data))
+// 	{
+// 		if (DD_MOD)
+// 			mlx_pxl(data->img, ray_x, ray_y, 0xFF0000);
+// 		ray_x += cos2;
+// 		ray_y += sin2;
+// 	}
+// 	data->ray_dir_x = cos2;
+// 	data->ray_dir_y = sin2;
+// 	data->wall_x = ray_x;
+// 	data->wall_y = ray_y;
+// 	if (!DD_MOD)
+// 	{
+// 		data->distance = squirt(ray_x, data->player->pos_x,
+// 				ray_y, data->player->pos_y)
+// 			* cos(start_x - data->player->angle);
+// 		data->wall_dir = get_wall_dir(data->side, data->ray_dir_x,
+// 				data->ray_dir_y);
+// 		size = ((WIDTH / 2) * (S_SQUARE / data->distance));
+// 		ray(data, i, size);
+// 	}
+// }
+
+void	draw_ray(t_data *data, double start_x, int i)
 {
-	int		end;
-	int		start_y;
 	double	ray_x;
 	double	ray_y;
 	double	cos2;
 	double	sin2;
 	double	size;
-	double	distance;
+	double	dist;
 
 	cos2 = cos(start_x);
 	sin2 = sin(start_x);
-	ray_x = player->pos_x;
-	ray_y = player->pos_y;
+	ray_x = data->player->pos_x;
+	ray_y = data->player->pos_y;
 	while (!line_to_wall(ray_x, ray_y, data))
 	{
 		if (DD_MOD)
@@ -128,60 +161,17 @@ void	draw_ray(t_data *data, t_player *player, double start_x, int i)
 		ray_x += cos2;
 		ray_y += sin2;
 	}
+	data->ray_dir_x = cos2;
+	data->ray_dir_y = sin2;
+	dist = squirt(ray_x, data->player->pos_x, ray_y, data->player->pos_y);
+	data->distance = dist * cos(start_x - data->player->angle);
+	if (data->side == 0)
+		data->wall_x = data->player->pos_y + data->distance * sin(start_x);
+	else
+		data->wall_x = data->player->pos_x + data->distance * cos(start_x);
+	data->wall_x -= floor(data->wall_x);
+	data->wall_dir = get_wall_dir(data->side, data->ray_dir_x, data->ray_dir_y);
+	size = ((WIDTH / 2) * (S_SQUARE / data->distance));
 	if (!DD_MOD)
-	{
-		distance = squirt(ray_x, player->pos_x, ray_y, player->pos_y)
-			* cos(start_x - player->angle);
-		size = ((WIDTH / 2) * (S_SQUARE / distance));
-		start_y = (HEIGHT - size) / 2;
-		end = start_y + size;
-		while (start_y < end)
-		{
-			mlx_pxl(data->img, i, start_y, 0xFFFFFF);
-			start_y++;
-		}
-	}
-}
-
-void	draw_minimap(t_data *data)
-{
-	int	i;
-	int	j;
-	int	offset_x;
-	int	offset_y;
-	int	scale;
-	int	minimap_w;
-	int	minimap_h;
-
-	scale = S_SQUARE / 4;
-	offset_x = WIDTH - (15 * scale) - 10;
-	offset_y = 10;
-	minimap_w = 15 * scale;
-	minimap_h = 10 * scale;
-	i = 0;
-	while (i < minimap_h)
-	{
-		j = 0;
-		while (j < minimap_w)
-		{
-			mlx_pxl(data->img, offset_x + j, offset_y + i, 0x111111);
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while (data->mapo[i])
-	{
-		j = 0;
-		while (data->mapo[i][j])
-		{
-			if (data->mapo[i][j] == '1')
-				draw_player3(j * scale + offset_x,
-					i * scale + offset_y, data);
-			j++;
-		}
-		i++;
-	}
-	draw_player4(data->player->pos_x / 4 + offset_x,
-		data->player->pos_y / 4 + offset_y, data);
+		ray(data, i, size);
 }

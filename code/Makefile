@@ -6,7 +6,7 @@
 #    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
-#    Updated: 2025/06/24 00:09:01 by logkoege         ###   ########.fr        #
+#    Updated: 2025/06/30 17:44:02 by logkoege         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ SRC =	exec/main.c\
 		exec/utils2.c\
 		exec/ray.c\
 		exec/draw_player.c\
+		exec/minimap.c\
+		exec/texture.c\
 
 OBJ = $(SRC:.c=.o)
 

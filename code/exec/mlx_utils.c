@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/06/24 00:08:27 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/06/24 23:31:15 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_mlx(t_data *data, t_image *img)
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		ft_freexit(data, "Error : mlx initialisation");
-	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "LevPD");
+	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!data->win)
 		ft_freexit(data, "Error : window initialisation");
 	img->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
