@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 18:58:54 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/01 20:42:28 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/01 21:02:54 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	load_textures(t_tex *tex, t_data *data)
 		|| !tex->textures[WEST] || !tex->textures[EAST])
 	{
 		printf("Error loading textures\n");
-		//exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	while (i < 4)
 	{

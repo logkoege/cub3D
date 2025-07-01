@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:19:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/01 18:36:16 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/01 21:00:09 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ int	main(int argc, char **argv)
 	t_image		img;
 	t_tex		tex;
 
+	data.tex = &tex;
 	(void)argv;
 	(void)argc;
-	load_textures(&tex, &data);
 	init_var(&data, &img, &player);
 	init_mlx(&data, &img);
 	map(&data);
 	data.img = &img;
 	data.player = &player;
+	load_textures(&tex, &data);
 	mlx_hook(data.win, 2, 1L << 0, press, &data);
 	mlx_hook(data.win, 3, 1L << 1, release, &data);
 	mlx_hook(data.win, 17, 0, ft_close, &data);
