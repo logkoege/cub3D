@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/05/22 09:06:51 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:19:12 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ typedef struct s_data
 	char	**map;
 	char	**truemap;
 	char	**map2;
-	int		map_len;
+	char	**map3;
+	int		line_len;
 	int		true_map_len;
 	int		floor_color;
 	int		roof_color;
@@ -57,6 +58,8 @@ typedef struct s_data
 	char	*file_east;
 	char	*file_west;
 	int		file_size;
+	int		player_y;
+	int 	player_x;
 }	t_data;
 
 //map
@@ -123,5 +126,9 @@ char	*ft_ligne(int fd, char *ligne, char *buffer);
 
 void	print_map(char **map);
 void	free_map_exit(t_data *data, char *str);
+
+//check_surround
+void	floodfill(t_data *data);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 09:14:28 by lloginov          #+#    #+#             */
-/*   Updated: 2025/06/24 23:23:12 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:18:37 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,33 @@ int	is_replace_char(t_data *data, int i, int j)
 	return (0);
 }
 
+
+
+void	player_pos(t_data *data)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+
+	while(data->map2[i])
+	{
+		j = 0;
+		while(data->map2[i][j])
+		{
+			if(data->map2[i][j] == 'N' || data->map2[i][j] == 'S' || data->map2[i][j] == 'E'
+					|| data->map2[i][j] == 'W')
+					{
+						data->player_y = i;
+						data->player_x = j;
+						return ;
+					}
+			j++;
+		}
+		i++;
+	}
+}
 void	check_player_count(t_data *data)
 {
 	int i;
@@ -39,14 +66,17 @@ void	check_player_count(t_data *data)
 		{
 			if(data->map2[i][j] == 'N' || data->map2[i][j] == 'S' || data->map2[i][j] == 'E'
 					|| data->map2[i][j] == 'W')
-						cmpt++;
+					cmpt++;
 			j++;
 		}
 		i++;
 	}
 	if(cmpt != 1)
 		free_map_exit(data, "Error : player error");
+	player_pos(data);
 }
+
+
 void	check_empty_line(t_data *data)
 {
 	int	i;
@@ -151,6 +181,7 @@ void	check_map_char(t_data *data)
 	check_player_count(data);
 	check_walls(data);
 	check_side(data);
+	// printf("%d\n", data->line_len);
 
 }
 
@@ -159,15 +190,14 @@ void	get_len_max(t_data *data)
 	int i;
 
 	i = 0;
-	data->map_len = ft_strlen(data->map2[i]);
+	data->line_len = ft_strlen(data->map2[i]);
 	while(data->map2[i])
 	{
-		if(data->map_len < ft_strlen(data->map2[i]))
-			data->map_len = ft_strlen(data->map2[i]);
+		if(data->line_len < ft_strlen(data->map2[i]))
+			data->line_len = ft_strlen(data->map2[i]);
 		i++;
 	}
 }
-
 
 
 void	set_to_one(t_data *data)
@@ -182,7 +212,7 @@ void	set_to_one(t_data *data)
 
 	while (data->map2[i])
 	{
-		tmp = malloc(sizeof (char) * (data->map_len + 2));
+		tmp = malloc(sizeof (char) * (data->line_len + 2));
 		if(!tmp)
 			free_map_exit(data, "malloc error");
 		j = 0;
@@ -196,9 +226,9 @@ void	set_to_one(t_data *data)
 				tmp[j] = data->map2[i][j];
 			j++;
 		}
-		while(j != data->map_len)
+		while(j != data->line_len)
 		{
-			tmp[j] = '1';
+			tmp[j] = '0';
 			j++;
 		}
 		tmp[j++] = '\n';
@@ -209,7 +239,7 @@ void	set_to_one(t_data *data)
 		free(tmp);
 		i++;
 	}
-	print_map(data->map2);
+	// print_map(data->map2);
 }
 
 void	map_alloc(t_data *data)
@@ -226,6 +256,6 @@ void	map_alloc(t_data *data)
 	get_len_max(data);
 	check_map_char(data);
 	set_to_one(data);
-
+	floodfill(data);
 	// print_map(data->map2);
 }

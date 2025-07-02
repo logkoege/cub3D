@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:28:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/05/22 09:00:04 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/02 13:18:37 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_var(t_data *data)
 	data->file_west = NULL;
 	data->truemap = NULL;
 	data->true_map_len = 0;
-	data->map_len = 0;
+	data->line_len = 0;
 	return ;
 }
 

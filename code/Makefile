@@ -6,7 +6,7 @@
 #    By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
-#    Updated: 2025/05/21 09:18:03 by lloginov         ###   ########.fr        #
+#    Updated: 2025/07/01 16:24:56 by lloginov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,8 @@ SRC =	gnl/get_next_line.c\
 		parsing/color_utils.c\
 		parsing/map_assign.c\
 		parsing/check_map.c\
+		parsing/check_surround.c\
+
 
 OBJ = $(SRC:.c=.o)
 
