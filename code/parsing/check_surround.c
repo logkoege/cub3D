@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 23:11:04 by lloginov          #+#    #+#             */
-/*   Updated: 2025/07/02 13:25:24 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/06 21:42:48 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,30 +36,58 @@ void	check_floodfill(t_data *data, int y, int x)
 	check_floodfill(data, y - 1, x);
 }
 
-// void	mapping_testing(t_data *data, int y, int x)
-// {
-// 	int i;
-// 	int j;
+void	replace_flood_fill(t_data *data, int y, int x)
+{
+	if(x > data->line_len - 1 || x < 0)
+		return ;
+	if(y > data->true_map_len - 1 || y < 0)
+		return ;
+	if (data->map2[y][x] == '1' || data->map2[y][x] == '0' || data->map2[y][x] == '\n' || data->map2[y][x] == '\0')
+		return ;
+	// print_map(data->map2);
+	// printf("\nAAAAAAA Y %dET IKS %d\n", y, x);
+	data->map2[y][x] = '0';
+	replace_flood_fill(data, y, x + 1);
+	replace_flood_fill(data, y, x - 1);
+	replace_flood_fill(data, y + 1, x);
+	replace_flood_fill(data, y - 1, x);
+}
 
-// 	i = 0;
-// 	j = 0;
+void	mapping_testing(t_data *data)
+{
+	int i;
+	int j;
 
-// 	while(data->map2[0][j])
-// 	{
-// 		if(data->map[0][j] == 'X')
-// 			free_map_exit(data, "Error : first line not closed")
-		
+	i = 0;
+	j = 0;
 
-// 	}
-// }
+	while(data->map2[0][j])
+	{
+		if(data->map2[0][j] == 'X')
+			free_map_exit(data, "Error : map isnt closed");
+		if(data->map2[data->true_map_len - 1][j] == 'X')
+			free_map_exit(data, "Error : map isnt closed");
+		j++;
+	}
+	j = 0;
+	while(data->map2[i])
+	{
+		if(data->map2[i][data->line_len - 1] == 'X' || data->map2[i][0] == 'X')
+			free_map_exit(data, "Error : map isnt closed");
+		i++;
+	}
+}
 
 void	floodfill(t_data *data)
 {
+	char player;
 
-	printf(" i et h : %d %d\n", data->line_len, data->true_map_len);
+	player = data->map2[data->player_y][data->player_x];
 	check_floodfill(data, data->player_y, data->player_x);
-	print_map(data->map2);
 	// printf("ASASASDSDSDSDSA\n\n\n\n");
+	mapping_testing(data);
+	replace_flood_fill(data, data->player_y, data->player_x);
+	data->map2[data->player_y][data->player_x] = player;
+	print_map(data->map2);
 	exit(1);
-	// mapping_testing(data, i, h);
 }
