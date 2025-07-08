@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/01 19:10:00 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/08 10:19:22 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,41 +105,6 @@ void	draw_map(t_data *data)
 		i++;
 	}
 }
-
-// void	draw_ray(t_data *data, double start_x, int i)
-// {
-// 	double	ray_x;
-// 	double	ray_y;
-// 	double	cos2;
-// 	double	sin2;
-// 	double	size;
-
-// 	cos2 = cos(start_x);
-// 	sin2 = sin(start_x);
-// 	ray_x = data->player->pos_x;
-// 	ray_y = data->player->pos_y;
-// 	while (!line_to_wall(ray_x, ray_y, data))
-// 	{
-// 		if (DD_MOD)
-// 			mlx_pxl(data->img, ray_x, ray_y, 0xFF0000);
-// 		ray_x += cos2;
-// 		ray_y += sin2;
-// 	}
-// 	data->ray_dir_x = cos2;
-// 	data->ray_dir_y = sin2;
-// 	data->wall_x = ray_x;
-// 	data->wall_y = ray_y;
-// 	if (!DD_MOD)
-// 	{
-// 		data->distance = squirt(ray_x, data->player->pos_x,
-// 				ray_y, data->player->pos_y)
-// 			* cos(start_x - data->player->angle);
-// 		data->wall_dir = get_wall_dir(data->side, data->ray_dir_x,
-// 				data->ray_dir_y);
-// 		size = ((WIDTH / 2) * (S_SQUARE / data->distance));
-// 		ray(data, i, size);
-// 	}
-// }
 
 void	draw_ray(t_data *data, double start_x, int i)
 {
