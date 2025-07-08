@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 18:58:54 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/08 10:19:46 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/08 11:03:31 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,48 +57,42 @@ int	get_wall_dir(int side, double ray_dir_x, double ray_dir_y)
 	}
 }
 
-int	get_tex_color(t_tex *tex, int dir, int x, int y)
+void draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir)
 {
-	char	*pixel;
-	int		color;
-	int		offset;
+    int y;
+    int tex_x;
+    int tex_y;
+    int color;
+    double step;
+    double tex_pos;
+    int wall_height;
 
-	if (dir == NORTH)
-		pixel = tex->addr[NORTH];
-	else if (dir == SOUTH)
-		pixel = tex->addr[SOUTH];
-	else if (dir == WEST)
-		pixel = tex->addr[WEST];
-	else
-		pixel = tex->addr[EAST];
-	offset = (y * tex->line_len) + (x * (tex->bpp / 8));
-	color = *(int *)(pixel + offset);
-	return (color);
+    wall_height = end_y - start_y;
+    tex_x = (int)((double)x / WIDTH * data->tex->tex_width);
+    if (tex_x < 0)
+        tex_x = 0;
+    if (tex_x >= data->tex->tex_width)
+        tex_x = data->tex->tex_width - 1;
+
+    if (wall_dir == WEST || wall_dir == SOUTH)
+        tex_x = data->tex->tex_width - tex_x - 1;
+    step = 1.0 * data->tex->tex_height / wall_height;
+    tex_pos = (start_y - (HEIGHT / 2) + (wall_height / 2)) * step;
+    y = start_y;
+    while (y < end_y)
+    {
+        tex_y = (int)tex_pos;
+        if (tex_y < 0)
+            tex_y = 0;
+        if (tex_y >= data->tex->tex_height)
+            tex_y = data->tex->tex_height - 1;
+
+        color = ((int *)data->tex->addr[wall_dir])[tex_y * (data->tex->line_len / 4) + tex_x];
+        mlx_pxl(data->img, x, y, color);
+
+        tex_pos += step;
+        y++;
+    }
 }
 
-void	draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir)
-{
-	int		y;
-	int		tex_x;
-	int		tex_y;
-	int		color;
-	double	step;
-	double	tex_pos;
-	int		wall_height;
 
-	wall_height = end_y - start_y;
-	tex_x = (int)(data->wall_x * (double)data->tex->tex_width);
-	if (wall_dir == EAST || wall_dir == SOUTH)
-		tex_x = data->tex->tex_width - tex_x - 1;
-	step = 1.0 * data->tex->tex_height / wall_height;
-	tex_pos = 0.0;
-	y = start_y;
-	while (y < end_y)
-	{
-		tex_y = (int)tex_pos;
-		color = ((int *)data->tex->addr[wall_dir])[tex_y * (data->tex->line_len / 4) + tex_x];
-		mlx_pxl(data->img, x, y, color);
-		tex_pos += step;
-		y++;
-	}
-}
