@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:57:53 by lloginov          #+#    #+#             */
-/*   Updated: 2025/06/23 16:08:28 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/09 16:29:47 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ void	map_name(char *map)
 	int	i;
 
 	i = ft_strlen(map);
-	if(i < 5)
+	if (i < 5)
 		print_exit("Error : map name too short");
 	i--;
 	if (map[i] == 'b' && map[i - 1] == 'u'
 		&& map[i - 2] == 'c' && map[i - 3] == '.')
 		return ;
 	else
-		print_exit("Error : map should be ended by \'.cub\'");
+		print_exit("Error : map should end with \'.cub\'");
 }
 
 void	map_size(t_data *data, int ac, char **av)
@@ -39,7 +39,7 @@ void	map_size(t_data *data, int ac, char **av)
 	(void)ac;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		print_exit("Error : first map open error");
+		print_exit("Error : cannot open map (first pass)");
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -51,7 +51,7 @@ void	map_size(t_data *data, int ac, char **av)
 	data->file_size = i;
 	data->map = malloc(sizeof(char *) * (data->file_size + 1));
 	if (!data->map)
-		print_exit("malloc map error");
+		print_exit("Error : malloc map failed");
 	close(fd);
 }
 
@@ -64,7 +64,7 @@ void	map_dup(t_data *data, char *map)
 	i = 0;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
-		print_exit("Error : second map open error");
+		print_exit("Error : cannot open map (second pass)");
 	while (i < data->file_size)
 	{
 		line = get_next_line(fd);
@@ -78,20 +78,19 @@ void	map_dup(t_data *data, char *map)
 	close(fd);
 }
 
-
 void	file_acces(t_data *data)
 {
 	if (open(data->file_south, O_RDONLY) == -1)
-		free_exit(data, "cannot acces southfile");
+		free_exit(data, "Error : cannot access south texture");
 	else if (open(data->file_west, O_RDONLY) == -1)
-		free_exit(data, "cannot acces westfile");
+		free_exit(data, "Error : cannot access west texture");
 	else if (open(data->file_north, O_RDONLY) == -1)
-		free_exit(data, "cannot acces northfile");
+		free_exit(data, "Error : cannot access north texture");
 	else if (open(data->file_east, O_RDONLY) == -1)
-		free_exit(data, "cannot acces eastfile");
+		free_exit(data, "Error : cannot access east texture");
 }
 
-int parsing(t_data *data, int ac, char **av)
+int	parsing(t_data *data, int ac, char **av)
 {
 	int	i;
 
@@ -104,7 +103,8 @@ int parsing(t_data *data, int ac, char **av)
 	color_check(data);
 	i = 0;
 	assign_map(data);
-	// print_map(data->map2);
+	printf("north file : %s\n south : %s\n east : %s\n west : %s\n", data->file_north, data->file_south, data->file_east, data->file_west);
+	printf("%d\n, %d\n", data->floor_color, data->roof_color);
 	// file_acces(data);
 	return (0);
 }

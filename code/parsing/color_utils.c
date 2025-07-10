@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:48:28 by lloginov          #+#    #+#             */
-/*   Updated: 2025/04/22 16:13:38 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/08 06:50:53 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int	ft_isdigit(int c)
 {
 	if (c >= '0' && c <= '9')
 		return (1);
-	else
-		return (0);
+	return (0);
 }
 
 int	ft_strcmp_clor(char *s1, char *s2)

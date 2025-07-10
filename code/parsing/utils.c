@@ -6,12 +6,11 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:28:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/02 13:18:37 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/08 06:52:27 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 void	init_var(t_data *data)
 {
@@ -23,7 +22,6 @@ void	init_var(t_data *data)
 	data->truemap = NULL;
 	data->true_map_len = 0;
 	data->line_len = 0;
-	return ;
 }
 
 char	*ft_dup(char *s1)
@@ -100,4 +98,3 @@ char	*ft_sub(char *s, int start, int len)
 	}
 	return (ret_sub(str, j));
 }
-

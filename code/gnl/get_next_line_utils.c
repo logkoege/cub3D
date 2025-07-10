@@ -6,12 +6,11 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 21:46:28 by lloginov          #+#    #+#             */
-/*   Updated: 2025/04/09 14:41:10 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/08 07:00:16 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
 
 char	*ft_split(char *src, char car)
 {

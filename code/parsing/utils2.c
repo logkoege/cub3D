@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/22 17:42:52 by lloginov          #+#    #+#             */
-/*   Updated: 2025/07/02 13:18:06 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/08 06:59:29 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	free_exit(t_data *data, char *str)
 
 void	free_map_exit(t_data *data, char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i != data->true_map_len + 1)
@@ -85,16 +85,4 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	return (number * sign);
-}
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
 }

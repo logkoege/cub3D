@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:52:46 by lloginov          #+#    #+#             */
-/*   Updated: 2025/04/22 16:12:19 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/08 06:50:38 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	color_check(t_data *data)
 		i++;
 	}
 	if (cmpt > 2)
-		free_exit(data, "Error : too much colors");
+		free_exit(data, "Error : too many colors");
 	else if (cmpt < 2)
-		free_exit(data, "Error : too much colors");
+		free_exit(data, "Error : missing colors");
 }

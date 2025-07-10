@@ -6,7 +6,7 @@
 /*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/02 13:19:12 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/07/10 14:32:32 by lloginov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@
 # define WEST_CAMERA	'W'
 # define SOUTH_CAMERA	'S'
 
-# define ESC		65307
-# define W			119
-# define A			97
-# define S			115
-# define D			100
+# define ESC	65307
+# define W		119
+# define A		97
+# define S		115
+# define D		100
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -59,18 +59,22 @@ typedef struct s_data
 	char	*file_west;
 	int		file_size;
 	int		player_y;
-	int 	player_x;
+	int		player_x;
 }	t_data;
 
-//map
+/* map */
 void	assign_map(t_data *data);
+void	map_alloc(t_data *data);
+void	check_player_count(t_data *data);
+void	check_walls(t_data *data);
+int		is_replace_char(t_data *data, int i, int j);
+int		is_map_char(t_data *data, int i, int j);
 
-//parsing
-
+/* parsing */
 void	map_name(char *map);
 int		parsing(t_data *data, int ac, char **av);
 
-//utils
+/* utils */
 void	init_var(t_data *data);
 void	print_exit(char *str);
 int		ft_strlen(char *str);
@@ -79,15 +83,16 @@ int		ft_strcmp_pos(char *s1, char *s2);
 char	*ft_sub(char *s, int start, int len);
 void	free_all(t_data *data);
 void	free_exit(t_data *data, char *str);
+void	free_map_exit(t_data *data, char *str);
 int		ft_is_ws(int i);
 char	**ft_spliter(char *s, char c);
 int		ft_atoi(char *str);
 
-//wals_utils
+/* walls utils */
 int		check_arg(char *arg, char f, char s);
 int		check_ws(char *arg, int i);
 
-//floor utils
+/* floor utils */
 void	floor_color_arg(t_data *data, char *arg);
 int		ft_isdigit(int c);
 int		ft_strcmp_clor(char *s1, char *s2);
@@ -100,20 +105,16 @@ int		rgb_to_hex(int r, int g, int b);
 void	check_is_num(t_data *data, char *red, char *green, char *blue);
 void	free_rgb(t_data *data, char *red, char *green, char *blue);
 
-//check_map
-void	map_alloc(t_data *data);
-int	is_map_char(t_data *data, int i, int j);
+/* roof color */
+void	roof_color_arg(t_data *data, char *arg);
+void	free_colors(t_data *data, char **color);
+void	check_xpm(t_data *data);
 
-//roof color
-void 	roof_color_arg(t_data *data, char *arg);
-
-//check_file
+/* files & colors check */
 void	wall_files_check(t_data *data);
-
-//color check
 void	color_check(t_data *data);
 
-//gnl
+/* gnl */
 char	*get_next_line(int fd);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strdup(char *s1);
@@ -124,11 +125,10 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_split(char *src, char car);
 char	*ft_ligne(int fd, char *ligne, char *buffer);
 
+/* misc */
 void	print_map(char **map);
-void	free_map_exit(t_data *data, char *str);
 
-//check_surround
+/* surround check */
 void	floodfill(t_data *data);
-
 
 #endif
