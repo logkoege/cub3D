@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/01 20:30:00 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/15 18:49:11 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@
 
 # define WIDTH		1280
 # define HEIGHT		720
-# define DD_MOD		0
+# define DD_MOD		1
 
 typedef struct s_tex
 {
@@ -65,6 +65,13 @@ typedef struct s_tex
 	int				bpp;
 	int				line_len;
 	int				endian;
+	int				y;
+	int				tex_x;
+	int				tex_y;
+	int				color;
+	double			step;
+	double			tex_pos;
+	int				wall_height;
 }	t_tex;
 
 typedef struct s_image
@@ -161,7 +168,7 @@ void	draw_minimap(t_data *data);
 void	draw_minimap_end(t_data *data, int x, int y);
 
 // texture.c
-int		get_wall_dir(int side, double ray_dir_x, double ray_dir_y);
+int		get_wall_dir(double ray_dir_x, double ray_dir_y);
 void	load_textures(t_tex *tex, t_data *data);
 
 void	draw_textured_wall(t_data *d, int x, int wall_h);

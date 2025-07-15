@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 18:58:54 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/08 10:19:46 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/11 20:29:52 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,65 @@ void	load_textures(t_tex *tex, t_data *data)
 	}
 }
 
-int	get_wall_dir(int side, double ray_dir_x, double ray_dir_y)
+int	get_wall_dir(double ray_dir_x, double ray_dir_y)
 {
-	if (side == 0)
+	if (ray_dir_y > 0)
 	{
 		if (ray_dir_x > 0)
-			return (EAST);
+		{
+			if (ray_dir_y > ray_dir_x)
+			{
+				printf("south\n");
+				return (SOUTH);
+			}
+			else
+			{
+				printf("east\n");
+				return (EAST);
+			}
+		}
 		else
-			return (WEST);
+		{
+			if (ray_dir_y > -ray_dir_x)
+			{
+				printf("south\n");
+				return (SOUTH);
+			}
+			else
+			{
+				printf("west\n");
+				return (WEST);
+			}
+		}
 	}
 	else
 	{
-		if (ray_dir_y > 0)
-			return (SOUTH);
+		if (ray_dir_x > 0)
+		{
+			if (-ray_dir_y > ray_dir_x)
+			{
+				printf("north\n");
+				return (NORTH);
+			}
+			else
+			{
+				printf("east\n");
+				return (EAST);
+			}
+		}
 		else
-			return (NORTH);
+		{
+			if (ray_dir_y < ray_dir_x)
+			{
+				printf("north\n");
+				return (NORTH);
+			}
+			else
+			{
+				printf("west\n");
+				return (WEST);
+			}
+		}
 	}
 }
 
@@ -78,27 +122,19 @@ int	get_tex_color(t_tex *tex, int dir, int x, int y)
 
 void	draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir)
 {
-	int		y;
-	int		tex_x;
-	int		tex_y;
-	int		color;
-	double	step;
-	double	tex_pos;
-	int		wall_height;
-
-	wall_height = end_y - start_y;
-	tex_x = (int)(data->wall_x * (double)data->tex->tex_width);
+	data->tex->wall_height = end_y - start_y;
+	data->tex->tex_x = (int)(data->wall_x * (double)data->tex->tex_width);
 	if (wall_dir == EAST || wall_dir == SOUTH)
-		tex_x = data->tex->tex_width - tex_x - 1;
-	step = 1.0 * data->tex->tex_height / wall_height;
-	tex_pos = 0.0;
-	y = start_y;
-	while (y < end_y)
+		data->tex->tex_x = data->tex->tex_width - data->tex->tex_x - 1;
+	data->tex->step = 1.0 * data->tex->tex_width / data->tex->wall_height;
+	data->tex->tex_pos = 0; //(start_y - HEIGHT / 2 + data->tex->wall_height / 2);
+	data->tex->y = start_y;
+	while (data->tex->y < end_y)
 	{
-		tex_y = (int)tex_pos;
-		color = ((int *)data->tex->addr[wall_dir])[tex_y * (data->tex->line_len / 4) + tex_x];
-		mlx_pxl(data->img, x, y, color);
-		tex_pos += step;
-		y++;
+		data->tex->tex_y = (int)data->tex->tex_pos;
+		data->tex->color = ((int *)data->tex->addr[wall_dir])[data->tex->tex_y * (data->tex->line_len / 4) + data->tex->tex_x];
+		mlx_pxl(data->img, x, data->tex->y, data->tex->color);
+		data->tex->tex_pos += data->tex->step;
+		data->tex->y++;
 	}
 }

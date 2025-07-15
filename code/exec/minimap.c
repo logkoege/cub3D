@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 23:28:53 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/08 10:01:39 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/15 18:20:33 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@ void	ray(t_data *data, int i, int size)
 {
 	data->start_y = (HEIGHT - size) / 2;
 	data->end = data->start_y + size;
-	if (data->start_y < 0)
-		data->start_y = 0;
-	if (data->end > HEIGHT)
-		data->end = HEIGHT;
 	draw_texture_column(data, i, data->start_y, data->end, data->wall_dir);
 }
 

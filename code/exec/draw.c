@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/08 10:19:22 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/15 18:59:57 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,13 @@ void	map(t_data *data)
 	i = 0;
 	map1 = malloc(sizeof(char *) * 11);
 	map1[0] = "111111111111111";
-	map1[1] = "100000000000001";
-	map1[2] = "100000001000001";
+	map1[1] = "101000000000001";
+	map1[2] = "100000001111111";
 	map1[3] = "100000000000001";
-	map1[4] = "100001000000001";
+	map1[4] = "100011000000001";
 	map1[5] = "100000010000001";
 	map1[6] = "100000000100001";
-	map1[7] = "100000001110001";
+	map1[7] = "111000011110001";
 	map1[8] = "100000000100001";
 	map1[9] = "111111111111111";
 	map1[10] = NULL;
@@ -126,16 +126,22 @@ void	draw_ray(t_data *data, double start_x, int i)
 		ray_x += cos2;
 		ray_y += sin2;
 	}
+	
 	data->ray_dir_x = cos2;
 	data->ray_dir_y = sin2;
 	dist = squirt(ray_x, data->player->pos_x, ray_y, data->player->pos_y);
+	printf("ray _y = %f\n", ray_y);
+	printf("ray _x = %f\n", ray_x);
+
+	
+	
 	data->distance = dist * cos(start_x - data->player->angle);
-	if (data->side == 0)
+	if (get_wall_dir(data->ray_dir_x, data->ray_dir_y) > 2)
 		data->wall_x = data->player->pos_y + data->distance * sin(start_x);
 	else
 		data->wall_x = data->player->pos_x + data->distance * cos(start_x);
 	data->wall_x -= floor(data->wall_x);
-	data->wall_dir = get_wall_dir(data->side, data->ray_dir_x, data->ray_dir_y);
+	data->wall_dir = get_wall_dir(data->ray_dir_x, data->ray_dir_y);
 	size = ((WIDTH / 2) * (S_SQUARE / data->distance));
 	if (!DD_MOD)
 		ray(data, i, size);
