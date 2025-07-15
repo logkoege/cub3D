@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 18:58:54 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/11 20:29:52 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/15 20:42:52 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	load_textures(t_tex *tex, t_data *data)
 
 	i = 0;
 	tex->textures[NORTH] = mlx_xpm_file_to_image(data->mlx,
-			"texture/north.xpm", &tex->tex_width, &tex->tex_height);
+			"texture/test.xpm", &tex->tex_width, &tex->tex_height);
 	tex->textures[SOUTH] = mlx_xpm_file_to_image(data->mlx,
-			"texture/south.xpm", &tex->tex_width, &tex->tex_height);
+			"texture/test.xpm", &tex->tex_width, &tex->tex_height);
 	tex->textures[WEST] = mlx_xpm_file_to_image(data->mlx, \
-			"texture/west.xpm", &tex->tex_width, &tex->tex_height);
+			"texture/test.xpm", &tex->tex_width, &tex->tex_height);
 	tex->textures[EAST] = mlx_xpm_file_to_image(data->mlx,
-			"texture/east.xpm", &tex->tex_width, &tex->tex_height);
+			"texture/test.xpm", &tex->tex_width, &tex->tex_height);
 	if (!tex->textures[NORTH] || !tex->textures[SOUTH]
 		|| !tex->textures[WEST] || !tex->textures[EAST])
 	{
@@ -33,7 +33,9 @@ void	load_textures(t_tex *tex, t_data *data)
 	}
 	while (i < 4)
 	{
-		tex->addr[i] = mlx_get_data_addr(tex->textures[i],
+		/*tex->addr[i] = mlx_get_data_addr(tex->textures[i],
+				&tex->bpp, &tex->line_len, &tex->endian);*/
+		tex->pixels[i] = (t_pixel *)mlx_get_data_addr(tex->textures[i],
 				&tex->bpp, &tex->line_len, &tex->endian);
 		i++;
 	}
@@ -47,12 +49,10 @@ int	get_wall_dir(double ray_dir_x, double ray_dir_y)
 		{
 			if (ray_dir_y > ray_dir_x)
 			{
-				printf("south\n");
 				return (SOUTH);
 			}
 			else
 			{
-				printf("east\n");
 				return (EAST);
 			}
 		}
@@ -60,12 +60,10 @@ int	get_wall_dir(double ray_dir_x, double ray_dir_y)
 		{
 			if (ray_dir_y > -ray_dir_x)
 			{
-				printf("south\n");
 				return (SOUTH);
 			}
 			else
 			{
-				printf("west\n");
 				return (WEST);
 			}
 		}
@@ -76,12 +74,10 @@ int	get_wall_dir(double ray_dir_x, double ray_dir_y)
 		{
 			if (-ray_dir_y > ray_dir_x)
 			{
-				printf("north\n");
 				return (NORTH);
 			}
 			else
 			{
-				printf("east\n");
 				return (EAST);
 			}
 		}
@@ -89,12 +85,10 @@ int	get_wall_dir(double ray_dir_x, double ray_dir_y)
 		{
 			if (ray_dir_y < ray_dir_x)
 			{
-				printf("north\n");
 				return (NORTH);
 			}
 			else
 			{
-				printf("west\n");
 				return (WEST);
 			}
 		}
@@ -120,21 +114,24 @@ int	get_tex_color(t_tex *tex, int dir, int x, int y)
 	return (color);
 }
 
-void	draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir)
+void	draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir, double percent_x)
 {
+	int		i;
+	t_pixel color;
+	double percent_y;
+
+	(void)x;
+
+	wall_dir = NORTH;
+
+	i = start_y;
 	data->tex->wall_height = end_y - start_y;
-	data->tex->tex_x = (int)(data->wall_x * (double)data->tex->tex_width);
-	if (wall_dir == EAST || wall_dir == SOUTH)
-		data->tex->tex_x = data->tex->tex_width - data->tex->tex_x - 1;
-	data->tex->step = 1.0 * data->tex->tex_width / data->tex->wall_height;
-	data->tex->tex_pos = 0; //(start_y - HEIGHT / 2 + data->tex->wall_height / 2);
-	data->tex->y = start_y;
-	while (data->tex->y < end_y)
+	while (i < end_y)
 	{
-		data->tex->tex_y = (int)data->tex->tex_pos;
-		data->tex->color = ((int *)data->tex->addr[wall_dir])[data->tex->tex_y * (data->tex->line_len / 4) + data->tex->tex_x];
-		mlx_pxl(data->img, x, data->tex->y, data->tex->color);
-		data->tex->tex_pos += data->tex->step;
-		data->tex->y++;
+		percent_y = ((double)i - (double)start_y) / (double)data->tex->wall_height;
+		int index = (percent_y * (double)data->tex->tex_height);
+		color = (data->tex->pixels[wall_dir])[index * data->tex->tex_height + (int)(percent_x * data->tex->tex_width)];
+		mlx_pxl_pixel(data->img, x, i, color);
+		i++;
 	}
 }

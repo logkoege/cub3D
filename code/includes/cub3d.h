@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/15 18:49:11 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/15 20:41:37 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,15 @@
 
 # define WIDTH		1280
 # define HEIGHT		720
-# define DD_MOD		1
+# define DD_MOD		0
+
+typedef struct s_pixel
+{
+	unsigned char b;
+	unsigned char g;
+	unsigned char r;
+	unsigned char a;
+} t_pixel;
 
 typedef struct s_tex
 {
@@ -62,6 +70,7 @@ typedef struct s_tex
 	int				tex_width;
 	void			*img;
 	char			*addr[4];
+	t_pixel			*pixels[4];
 	int				bpp;
 	int				line_len;
 	int				endian;
@@ -78,6 +87,7 @@ typedef struct s_image
 {
 	void			*img;
 	char			*addr;
+	t_pixel			*pixels;
 	int				bit_pxl;
 	int				line_len;
 	int				endian;
@@ -127,6 +137,7 @@ typedef struct s_data
 // mlx_util.c
 void	init_mlx(t_data *data, t_image *image);
 void	mlx_pxl(t_image *img, int x, int y, int color);
+void	mlx_pxl_pixel(t_image *img, int x, int y, t_pixel color);
 void	mlx_draw(int i, int j, t_image *img);
 
 // utils.c
@@ -160,7 +171,7 @@ void	draw_map(t_data *data);
 bool	line_to_wall(double px, double py, t_data *data);
 double	sqr(double a);
 double	squirt(double x, double y, double x1, double x2);
-void	ray(t_data *data, int i, int size);
+void	ray(t_data *data, int i, int size, double p_x, double p_y);
 
 // minimap.c
 void	draw_ray(t_data *data, double start_x, int i);
@@ -172,7 +183,7 @@ int		get_wall_dir(double ray_dir_x, double ray_dir_y);
 void	load_textures(t_tex *tex, t_data *data);
 
 void	draw_textured_wall(t_data *d, int x, int wall_h);
-void	draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir);
+void	draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir, double p);
 int		get_tex_color(t_tex *tex, int dir, int x, int y);
 
 ///////////////////////////////////_PARSING_///////////////////////////////////

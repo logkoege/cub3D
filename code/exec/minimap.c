@@ -6,17 +6,27 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 23:28:53 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/15 18:20:33 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/15 20:49:07 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	ray(t_data *data, int i, int size)
+void	ray(t_data *data, int i, int size, double p_x, double p_y)
 {
+	p_x -= floor(p_x);
+	p_y -= floor(p_y);
+	double ntm = p_x;
+	if (p_y > ntm) {
+		ntm = p_y;
+	}
+	if ((int)(p_x * 100) >= 90)
+		ntm = p_y;
+	if ((int)(p_y * 100) >= 90)
+		ntm = p_x;
 	data->start_y = (HEIGHT - size) / 2;
 	data->end = data->start_y + size;
-	draw_texture_column(data, i, data->start_y, data->end, data->wall_dir);
+	draw_texture_column(data, i, data->start_y, data->end, data->wall_dir, ntm);
 }
 
 void	draw_minimap(t_data *data)

@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/15 18:59:57 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/15 20:44:33 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,19 +130,19 @@ void	draw_ray(t_data *data, double start_x, int i)
 	data->ray_dir_x = cos2;
 	data->ray_dir_y = sin2;
 	dist = squirt(ray_x, data->player->pos_x, ray_y, data->player->pos_y);
-	printf("ray _y = %f\n", ray_y);
-	printf("ray _x = %f\n", ray_x);
+	/*printf("ray _y = %f\n", ray_y / S_SQUARE);
+	printf("ray _x = %f\n", ray_x / S_SQUARE);*/
 
 	
 	
 	data->distance = dist * cos(start_x - data->player->angle);
-	if (get_wall_dir(data->ray_dir_x, data->ray_dir_y) > 2)
-		data->wall_x = data->player->pos_y + data->distance * sin(start_x);
+	data->wall_x = data->player->pos_y + data->distance * sin(start_x);
+	/*if (get_wall_dir(data->ray_dir_x, data->ray_dir_y) > 2)
 	else
-		data->wall_x = data->player->pos_x + data->distance * cos(start_x);
+		data->wall_x = data->player->pos_x + data->distance * cos(start_x);*/
 	data->wall_x -= floor(data->wall_x);
 	data->wall_dir = get_wall_dir(data->ray_dir_x, data->ray_dir_y);
 	size = ((WIDTH / 2) * (S_SQUARE / data->distance));
 	if (!DD_MOD)
-		ray(data, i, size);
+		ray(data, i, size, ray_x / S_SQUARE, ray_y / S_SQUARE);
 }

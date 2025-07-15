@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 14:09:45 by logkoege          #+#    #+#             */
-/*   Updated: 2025/06/24 23:31:15 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/07/15 20:11:09 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,20 @@ void	init_mlx(t_data *data, t_image *img)
 	img->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	img->addr = mlx_get_data_addr(img->img, &img->bit_pxl, &img->line_len,
 			&img->endian);
+	img->pixels = (t_pixel *)mlx_get_data_addr(img->img, &img->bit_pxl, &img->line_len,
+			&img->endian);
 	mlx_draw(i, j, img);
 	mlx_put_image_to_window(data->mlx, data->win, img->img, 0, 0);
+}
+
+void	mlx_pxl_pixel(t_image *img, int x, int y, t_pixel color)
+{
+	t_pixel	*dst;
+
+	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
+		return ;
+	dst = img->pixels + (y * WIDTH + x);
+	*dst = color;
 }
 
 void	mlx_pxl(t_image *img, int x, int y, int color)
