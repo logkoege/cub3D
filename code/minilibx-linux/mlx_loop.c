@@ -34,7 +34,7 @@ int			mlx_loop_end(t_xvar *xvar)
 	return (1);
 }
 
-int			mlx_loop_hookmlx_loop(t_xvar *xvar)
+int			mlx_loop(t_xvar *xvar)
 {
 	XEvent		ev;
 	t_win_list	*win;

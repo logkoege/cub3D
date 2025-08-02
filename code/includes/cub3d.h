@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/15 20:41:37 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/02 14:22:13 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,8 @@ typedef struct s_player
 typedef struct s_data
 {
 	int				minimap_w;
+	int				step_x;
+	int				step_y;
 	int				minimap_h;
 	int				start_y;
 	int				end;
@@ -127,6 +129,8 @@ typedef struct s_data
 	double			wall_x;
 	double			wall_y;
 	int				wall_dir;
+	double			map_pos_y;
+	double			map_pos_x;
 	struct s_image	*img;
 	struct s_player	*player;
 	struct s_tex	*tex;
@@ -141,7 +145,7 @@ void	mlx_pxl_pixel(t_image *img, int x, int y, t_pixel color);
 void	mlx_draw(int i, int j, t_image *img);
 
 // utils.c
-void	init_player(t_player *player);
+void	init_player(t_player *player, t_data *data, char st);
 void	init_var(t_data *data, t_image *image, t_player *player);
 void	ft_freexit(t_data *data, char *msg);
 int		ft_close(t_data *data);
@@ -174,12 +178,12 @@ double	squirt(double x, double y, double x1, double x2);
 void	ray(t_data *data, int i, int size, double p_x, double p_y);
 
 // minimap.c
-void	draw_ray(t_data *data, double start_x, int i);
+void	draw_ray(t_data *data, double ray_dir_x, double ray_dir_y, int x);
 void	draw_minimap(t_data *data);
 void	draw_minimap_end(t_data *data, int x, int y);
 
 // texture.c
-int		get_wall_dir(double ray_dir_x, double ray_dir_y);
+int		get_wall_dir(t_data *data);
 void	load_textures(t_tex *tex, t_data *data);
 
 void	draw_textured_wall(t_data *d, int x, int wall_h);
