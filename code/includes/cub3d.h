@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:21:02 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/02 14:22:13 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/08 18:30:31 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ int		draw_player_loop(t_data *data);
 // utils2.c
 int		press(int keycode, t_data *data);
 int		release(int keycode, t_data *data);
+int		ft_strlen(char *str);
 
 // draw.c
 int		draw_player_loop(t_data *data);

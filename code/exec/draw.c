@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/03 17:57:57 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/08 18:49:07 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,9 @@ void	draw_ray(t_data *data, double ray_dir_x, double ray_dir_y, int x)
 	hit = 0;
 	delta_dist_x = fabs(1.0 / ray_dir_x);
 	delta_dist_y = fabs(1.0 / ray_dir_y);
-	if (ray_dir_x < 0)
+	data->ray_dir_x = ray_dir_x;
+	data->ray_dir_y = ray_dir_y;
+	if (data->ray_dir_x < 0)
 	{
 		step_x = -1;
 		side_dist_x = (pos_x - map_x) * delta_dist_x;
@@ -149,7 +151,7 @@ void	draw_ray(t_data *data, double ray_dir_x, double ray_dir_y, int x)
 		step_x = 1;
 		side_dist_x = (map_x + 1.0 - pos_x) * delta_dist_x;
 	}
-	if (ray_dir_y < 0)
+	if (data->ray_dir_y < 0)
 	{
 		step_y = -1;
 		side_dist_y = (pos_y - map_y) * delta_dist_y;
@@ -174,7 +176,7 @@ void	draw_ray(t_data *data, double ray_dir_x, double ray_dir_y, int x)
 			side = 1;
 		}
 		if (map_y < 0 || !data->mapo[map_y] || map_x < 0
-			|| map_x >= (int)strlen(data->mapo[map_y]))
+			|| map_x >= (int)ft_strlen(data->mapo[map_y]))
 			break ;
 		if (data->mapo[map_y][map_x] == '1')
 			hit = 1;
@@ -183,16 +185,14 @@ void	draw_ray(t_data *data, double ray_dir_x, double ray_dir_y, int x)
 		perpwalldist = (map_x - pos_x + (1 - step_x) / 2.0) / ray_dir_x;
 	else
 		perpwalldist = (map_y - pos_y + (1 - step_y) / 2.0) / ray_dir_y;
-	data->ray_dir_x = ray_dir_x;
-	data->ray_dir_y = ray_dir_y;
 	data->side = side;
 	data->step_x = step_x;
 	data->step_y = step_y;
 	data->distance = perpwalldist;
 	if (side == 0)
-		wall_x = pos_y + perpwalldist * ray_dir_y;
+		wall_x = pos_y + perpwalldist * data->ray_dir_y;
 	else
-		wall_x = pos_x + perpwalldist * ray_dir_x;
+		wall_x = pos_x + perpwalldist * data->ray_dir_x;
 	wall_x -= floor(wall_x);
 	if (side == 0 && step_x < 0)
 		wall_x = 1.0 - wall_x;

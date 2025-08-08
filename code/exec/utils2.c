@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:49:11 by logkoege          #+#    #+#             */
-/*   Updated: 2025/07/19 22:30:31 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/08 18:28:25 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,16 @@ int	release(int keycode, t_data *data)
 	else if (keycode == LEFT)
 		data->camera_left = false;
 	return (0);
+}
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }
