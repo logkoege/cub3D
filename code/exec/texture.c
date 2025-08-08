@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 18:58:54 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/02 15:49:11 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/03 17:58:39 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,19 @@ int	get_wall_dir(t_data *data)
 	}
 }
 
-void draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir, double percent_x)
+void	draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_dir, double percent_x)
 {
-	int i;
-	t_pixel color;
-	double percent_y;
-	int tex_x;
-	int tex_y;
+	int		i;
+	t_pixel	color;
+	double	percent_y;
+	int		tex_x;
+	int		tex_y;
 
 	wall_dir = get_wall_dir(data);
-
 	data->tex->wall_height = end_y - start_y;
 	tex_x = (int)(percent_x * data->tex->tex_width);
 	if (tex_x >= data->tex->tex_width)
 		tex_x = data->tex->tex_width - 1;
-
 	i = start_y;
 	while (i < end_y)
 	{
@@ -80,7 +78,6 @@ void draw_texture_column(t_data *data, int x, int start_y, int end_y, int wall_d
 		if (tex_y >= data->tex->tex_height)
 			tex_y = data->tex->tex_height - 1;
 		color = data->tex->pixels[wall_dir][tex_y * data->tex->tex_width + tex_x];
-
 		mlx_pxl_pixel(data->img, x, i, color);
 		i++;
 	}
