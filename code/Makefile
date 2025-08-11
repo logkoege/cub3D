@@ -22,9 +22,7 @@ SRC =	exec/main.c\
 		exec/move.c\
 		exec/draw.c\
 		exec/utils2.c\
-		exec/ray.c\
 		exec/draw_player.c\
-		exec/minimap.c\
 		exec/texture.c\
 
 OBJ = $(SRC:.c=.o)
