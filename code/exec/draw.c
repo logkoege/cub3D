@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/08 18:49:07 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/11 14:45:05 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,11 +202,7 @@ void	draw_ray(t_data *data, double ray_dir_x, double ray_dir_y, int x)
 	data->wall_dir = get_wall_dir(data);
 	line_height = (int)((double)HEIGHT / perpwalldist);
 	draw_start = -line_height / 2 + HEIGHT / 2;
-	if (draw_start < 0)
-		draw_start = 0;
 	draw_end = line_height / 2 + HEIGHT / 2;
-	if (draw_end >= HEIGHT)
-		draw_end = HEIGHT - 1;
 	if (!DD_MOD)
 		draw_texture_column(data, x,
 			draw_start, draw_end, data->wall_dir, wall_x);
