@@ -1,0 +1,61 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
+#    Updated: 2025/08/16 17:50:08 by logkoege         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME = cub3d
+CC = gcc
+CFLAGS = -Werror -Wall -Wextra -g3 -fsanitize=address
+MLX = -L./minilibx-linux -lmlx -lX11 -lXext -lm
+INCLUDES = -I./minilibx-linux -I.
+
+SRC			= gnl/get_next_line.c \
+			  gnl/get_next_line_utils.c \
+			  parsing/utils.c \
+			  parsing/utils2.c \
+			  parsing/utils3.c \
+			  parsing/parsing.c \
+			  parsing/check_files.c \
+			  parsing/walls_utils.c \
+			  parsing/color_check.c \
+			  parsing/ft_spliter.c \
+			  parsing/roof_color_check.c \
+			  parsing/floor_parser.c \
+			  parsing/color_utils.c \
+			  parsing/map_assign.c \
+			  parsing/check_map.c \
+			  parsing/check_surround.c \
+			  parsing/floor_parser2.c \
+			  parsing/check_map2.c \
+			  exec/main.c \
+			  exec/utils.c \
+			  exec/mlx_utils.c \
+			  exec/move.c \
+			  exec/draw.c \
+			  exec/utils2.c \
+			  exec/draw_player.c \
+			  exec/texture.c
+
+OBJ = $(SRC:.c=.o)
+
+all: $(NAME)
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME)
+
+clean:
+	rm -f $(OBJ)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re
