@@ -12,7 +12,7 @@
 
 NAME = cub3d
 CC = gcc
-CFLAGS = -Werror -Wall -Wextra -g3 -fsanitize=address
+CFLAGS = -Werror -Wall -Wextra -g3 #-fsanitize=address
 MLX = -L./minilibx-linux -lmlx -lX11 -lXext -lm
 INCLUDES = -I./minilibx-linux -I.
 
