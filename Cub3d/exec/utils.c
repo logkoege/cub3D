@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:28:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/17 16:34:12 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 18:45:50 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	init_var2(t_data *data, t_image *img, t_player *player)
 
 void	ft_freexit(t_data *data, char *msg)
 {
-	printf("des\n");
 	(void)data;
 	printf("%s", msg);
 	return ;
@@ -65,7 +64,7 @@ int	ft_close(t_data *data)
 
 void	destroy_textures(t_tex *tex, t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 4)

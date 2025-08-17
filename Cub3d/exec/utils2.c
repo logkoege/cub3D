@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:49:11 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/17 16:42:14 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 18:39:54 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ int	release(int keycode, t_data *data)
 		data->camera_left = false;
 	return (0);
 }
-
-
 
 void	free_mlx(t_data *data)
 {

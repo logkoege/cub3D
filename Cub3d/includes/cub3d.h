@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 00:00:00 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/17 16:53:22 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 19:27:58 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,17 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	double				perpwalldist;
+	double				side_dist_x;
+	double				side_dist_y;
+	double				delta_dist_x;
+	double				delta_dist_y;
+	int					line_height;
+	int					draw_start;
+	int					draw_end;
+	int					hit;
+	int					map_x;
+	int					map_y;
 	int					x;
 	int					minimap_w;
 	int					step_x;
@@ -145,7 +156,6 @@ typedef struct s_data
 	struct s_image		*img;
 	struct s_player		*player;
 	struct s_tex		*tex;
-
 	char				**map;
 	char				**truemap;
 	char				**map2;
@@ -199,6 +209,11 @@ void	destroy_textures(t_tex *tex, t_data *data);
 void	clear_img(t_data *data);
 void	map(t_data *data);
 void	draw_map(t_data *data);
+/* end_of_draw.c*/
+void	part_1(t_data *data);
+void	part_2(t_data *data);
+void	part_3(t_data *data);
+void	part_4(t_data *data);
 
 /* exec/ray.c */
 bool	line_to_wall(double px, double py, t_data *data);
@@ -211,14 +226,16 @@ void	draw_ray(t_data *data, double ray_dir_x, double ray_dir_y);
 void	draw_minimap(t_data *data);
 void	draw_minimap_end(t_data *data, int x, int y);
 
+/* exec/draw_tex.c */
+void	draw_texture_n(t_data *data, int start_y, int end_y, double p);
+void	draw_texture_s(t_data *data, int start_y, int end_y, double p);
+void	draw_texture_w(t_data *data, int start_y, int end_y, double p);
+void	draw_texture_e(t_data *data, int start_y, int end_y, double p);
+
 /* exec/texture.c */
 int		get_wall_dir(t_data *data);
 void	load_textures(t_tex *tex, t_data *data);
 void	draw_textured_wall(t_data *d, int x, int wall_h);
-void	draw_texture_column_N(t_data *data, int start_y, int end_y, double p);
-void	draw_texture_column_S(t_data *data, int start_y, int end_y, double p);
-void	draw_texture_column_W(t_data *data, int start_y, int end_y, double p);
-void	draw_texture_column_E(t_data *data, int start_y, int end_y, double p);
 int		get_tex_color(t_tex *tex, int dir, int x, int y);
 
 /* parsing/map_assign.c */

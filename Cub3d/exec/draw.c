@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:33:36 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/16 19:07:12 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 19:28:50 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,18 +92,14 @@ int	draw_player_loop(t_data *data)
 	half_fov = PI / 6.0;
 	player_intructs(data, data->player);
 	mlx_draw(0, 0, data->img, data);
-	if (DD_MOD)
-	{
-		draw_player(data->player->pos_x, data->player->pos_y, data);
-		draw_map(data);
-	}
 	while (data->x < WIDTH)
 	{
 		camera_x = 2.0 * data->x / (double)WIDTH - 1.0;
 		plane_factor = tan(half_fov);
-		ray_dir_x = data->player->cos_angle + (-data->player->sin_angle) * plane_factor * camera_x;
-		ray_dir_y = data->player->sin_angle + data->player->cos_angle * plane_factor * camera_x;
-
+		ray_dir_x = data->player->cos_angle
+			+ (-data->player->sin_angle) * plane_factor * camera_x;
+		ray_dir_y = data->player->sin_angle
+			+ data->player->cos_angle * plane_factor * camera_x;
 		draw_ray(data, ray_dir_x, ray_dir_y);
 		data->x++;
 	}
@@ -113,104 +109,15 @@ int	draw_player_loop(t_data *data)
 
 void	draw_ray(t_data *data, double ray_dir_x, double ray_dir_y)
 {
-	double	pos_x;
-	double	pos_y;
-	int		map_x;
-	int		map_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	int		step_x;
-	int		step_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	int		hit;
-	int		side;
-	double	perpwalldist;
-	int		line_height;
-	int		draw_start;
-	int		draw_end;
-	double	wall_x;
-
-	pos_x = data->player->pos_x;
-	pos_y = data->player->pos_y;
-	map_x = (int)pos_x;
-	map_y = (int)pos_y;
-	hit = 0;
-	delta_dist_x = fabs(1.0 / ray_dir_x);
-	delta_dist_y = fabs(1.0 / ray_dir_y);
+	data->map_x = (int)data->player->pos_x;
+	data->map_y = (int)data->player->pos_y;
+	data->hit = 0;
+	data->delta_dist_x = fabs(1.0 / ray_dir_x);
+	data->delta_dist_y = fabs(1.0 / ray_dir_y);
 	data->ray_dir_x = ray_dir_x;
 	data->ray_dir_y = ray_dir_y;
-	if (data->ray_dir_x < 0)
-	{
-		step_x = -1;
-		side_dist_x = (pos_x - map_x) * delta_dist_x;
-	}
-	else
-	{
-		step_x = 1;
-		side_dist_x = (map_x + 1.0 - pos_x) * delta_dist_x;
-	}
-	if (data->ray_dir_y < 0)
-	{
-		step_y = -1;
-		side_dist_y = (pos_y - map_y) * delta_dist_y;
-	}
-	else
-	{
-		step_y = 1;
-		side_dist_y = (map_y + 1.0 - pos_y) * delta_dist_y;
-	}
-	while (hit == 0)
-	{
-		if (side_dist_x < side_dist_y)
-		{
-			side_dist_x += delta_dist_x;
-			map_x += step_x;
-			side = 0;
-		}
-		else
-		{
-			side_dist_y += delta_dist_y;
-			map_y += step_y;
-			side = 1;
-		}
-		if (map_y < 0 || !data->map2[map_y] || map_x < 0
-			|| map_x >= (int)ft_strlen(data->map2[map_y]))
-			break ;
-		if (data->map2[map_y][map_x] == '1')
-			hit = 1;
-	}
-	if (side == 0)
-		perpwalldist = (map_x - pos_x + (1 - step_x) / 2.0) / ray_dir_x;
-	else
-		perpwalldist = (map_y - pos_y + (1 - step_y) / 2.0) / ray_dir_y;
-	data->side = side;
-	data->step_x = step_x;
-	data->step_y = step_y;
-	data->distance = perpwalldist;
-	if (side == 0)
-		wall_x = pos_y + perpwalldist * data->ray_dir_y;
-	else
-		wall_x = pos_x + perpwalldist * data->ray_dir_x;
-	wall_x -= floor(wall_x);
-	if (side == 0 && step_x < 0)
-		wall_x = 1.0 - wall_x;
-	if (side == 1 && step_y > 0)
-		wall_x = 1.0 - wall_x;
-	data->wall_x = wall_x;
-	line_height = (int)((double)HEIGHT / perpwalldist);
-	draw_start = -line_height / 2 + HEIGHT / 2;
-	draw_end = line_height / 2 + HEIGHT / 2;
-	data->wall_dir = get_wall_dir(data);
-	if (!DD_MOD)
-	{
-		if (data->wall_dir == NORTH)
-			draw_texture_column_N(data, draw_start, draw_end, wall_x);
-		else if (data->wall_dir == SOUTH)
-			draw_texture_column_S(data, draw_start, draw_end, wall_x);
-		else if (data->wall_dir == WEST)
-			draw_texture_column_W(data, draw_start, draw_end, wall_x);
-		else
-			draw_texture_column_E(data, draw_start, draw_end, wall_x);
-	}
+	part_1(data);
+	part_2(data);
+	part_3(data);
+	part_4(data);
 }

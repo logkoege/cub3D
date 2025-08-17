@@ -6,7 +6,7 @@
 #    By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/05 18:22:35 by logkoege          #+#    #+#              #
-#    Updated: 2025/08/16 17:50:08 by logkoege         ###   ########.fr        #
+#    Updated: 2025/08/17 19:27:38 by logkoege         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,9 @@ SRC			= gnl/get_next_line.c \
 			  exec/draw.c \
 			  exec/utils2.c \
 			  exec/draw_player.c \
-			  exec/texture.c
+			  exec/texture.c \
+			  exec/draw_tex.c \
+			  exec/end_of_draw.c
 
 OBJ = $(SRC:.c=.o)
 
