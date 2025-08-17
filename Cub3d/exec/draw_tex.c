@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 18:46:48 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/17 18:47:04 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 20:44:37 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,19 @@ void	draw_texture_e(t_data *data, int start_y, int end_y, double percent_x)
 			*data->tex->tex_width_E + tex_x];
 		mlx_pxl_pixel(data->img, data->x, i, color);
 		i++;
+	}
+}
+
+void	bonus(int keycode, t_data *data)
+{
+	if (keycode == G)
+	{
+		destroy_textures(data->tex, data);
+		load_texture(data->tex, data);
+	}
+	else if (keycode == H)
+	{
+		destroy_textures(data->tex, data);
+		load_textures(data->tex, data);
 	}
 }

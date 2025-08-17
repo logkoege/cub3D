@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 00:00:00 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/17 19:27:58 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 20:36:42 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define S				115
 # define D				100
 # define G				103
+# define H				104
 
 # define NORTH			0
 # define SOUTH			1
@@ -58,6 +59,7 @@
 # define WIDTH			1280
 # define HEIGHT			720
 # define DD_MOD			0
+# define BONUS			1
 
 typedef struct s_pixel
 {
@@ -105,6 +107,8 @@ typedef struct s_image
 
 typedef struct s_player
 {
+	double				tp_y;
+	double				tp_x;
 	double				angle;
 	double				pos_x;
 	double				pos_y;
@@ -174,6 +178,7 @@ typedef struct s_data
 	char				player_spawn;
 }	t_data;
 
+void	load_texture(t_tex *tex, t_data *data);
 /* exec/mlx_utils.c */
 void	init_mlx(t_data *data, t_image *image);
 void	mlx_pxl(t_image *img, int x, int y, int color);
@@ -231,6 +236,7 @@ void	draw_texture_n(t_data *data, int start_y, int end_y, double p);
 void	draw_texture_s(t_data *data, int start_y, int end_y, double p);
 void	draw_texture_w(t_data *data, int start_y, int end_y, double p);
 void	draw_texture_e(t_data *data, int start_y, int end_y, double p);
+void	bonus(int keycode, t_data *data);
 
 /* exec/texture.c */
 int		get_wall_dir(t_data *data);
