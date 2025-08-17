@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:57:53 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/11 15:58:24 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:21:52 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	map_dup(t_data *data, char *map)
 		if (!line)
 			break ;
 		data->map[i] = ft_dup(line);
-		i++;
 		free(line);
+		i++;
 	}
 	data->map[i] = NULL;
 	close(fd);

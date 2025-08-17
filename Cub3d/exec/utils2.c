@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:49:11 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/16 18:49:01 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 16:42:14 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	press(int keycode, t_data *data)
 {
 	if (keycode == ESC)
-		ft_freexit(data, "");
+		ft_close(data);
 	else if (keycode == W)
 		data->front = true;
 	else if (keycode == A)
@@ -48,11 +48,17 @@ int	release(int keycode, t_data *data)
 	return (0);
 }
 
+
+
 void	free_mlx(t_data *data)
 {
+	mlx_destroy_image(data->mlx, data->img->img);
+	data->img->img = NULL;
 	mlx_destroy_window(data->mlx, data->win);
+	data->win = NULL;
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
+	data->mlx = NULL;
 }
 
 void	init_var3(t_tex *tex)

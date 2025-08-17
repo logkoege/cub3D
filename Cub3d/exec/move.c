@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 23:50:43 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/14 18:00:24 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 14:58:26 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ bool	can_move(t_data *data, double next_x, double next_y)
 
 void	player_intructs(t_data *data, t_player *player)
 {
-	player->speed = 0.08;
-	player->angle_speed = 0.05;
+	player->speed = 0.02;
+	player->angle_speed = 0.02;
 	if (data->camera_left)
 		player->angle -= player->angle_speed;
 	if (data->camera_right)
@@ -52,8 +52,8 @@ void	player_camera(t_data *data, t_player *player)
 
 	if (data->front)
 	{
-		nx = player->pos_x + player->cos_angle * 0.08;
-		ny = player->pos_y + player->sin_angle * 0.08;
+		nx = player->pos_x + player->cos_angle * 0.04;
+		ny = player->pos_y + player->sin_angle * 0.04;
 		if (can_move(data, nx, ny))
 		{
 			player->pos_x = nx;
@@ -62,8 +62,8 @@ void	player_camera(t_data *data, t_player *player)
 	}
 	if (data->left)
 	{
-		nx = player->pos_x + player->sin_angle * 0.08;
-		ny = player->pos_y - player->cos_angle * 0.08;
+		nx = player->pos_x + player->sin_angle * 0.04;
+		ny = player->pos_y - player->cos_angle * 0.04;
 		if (can_move(data, nx, ny))
 		{
 			player->pos_x = nx;
@@ -80,8 +80,8 @@ void	player_camera_2(t_data *data, t_player *player)
 
 	if (data->right)
 	{
-		nx = player->pos_x - player->sin_angle * 0.08;
-		ny = player->pos_y + player->cos_angle * 0.08;
+		nx = player->pos_x - player->sin_angle * 0.04;
+		ny = player->pos_y + player->cos_angle * 0.04;
 		if (can_move(data, nx, ny))
 		{
 			player->pos_x = nx;
@@ -90,8 +90,8 @@ void	player_camera_2(t_data *data, t_player *player)
 	}
 	if (data->back)
 	{
-		nx = player->pos_x - player->cos_angle * 0.08;
-		ny = player->pos_y - player->sin_angle * 0.08;
+		nx = player->pos_x - player->cos_angle * 0.04;
+		ny = player->pos_y - player->sin_angle * 0.04;
 		if (can_move(data, nx, ny))
 		{
 			player->pos_x = nx;

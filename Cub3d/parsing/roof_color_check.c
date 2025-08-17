@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   roof_color_check.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:40:57 by lloginov          #+#    #+#             */
-/*   Updated: 2025/07/09 10:30:17 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/08/17 17:55:21 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ void	assign_colors2(t_data *data, char **split)
 	blue = ft_dup(split[2]);
 	free_tab(split);
 	check_is_num(data, red, green, blue);
-	hex = rgb_to_hex(check_red(data, red),
-			check_green(data, green), check_blue(data, blue));
+	hex = rgb_to_hex(check_red(data, red), check_green(data, green), check_blue(data, blue));
 	data->roof_color = hex;
 }
 

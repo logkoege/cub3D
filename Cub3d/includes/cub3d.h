@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 00:00:00 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/16 19:09:46 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 16:53:22 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,7 @@ int		press(int keycode, t_data *data);
 int		release(int keycode, t_data *data);
 void	free_mlx(t_data *data);
 void	init_var3(t_tex *tex);
+void	destroy_textures(t_tex *tex, t_data *data);
 
 /* exec/draw.c */
 void	clear_img(t_data *data);

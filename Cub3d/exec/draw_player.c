@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 00:07:49 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/02 14:40:25 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:37:46 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void	draw_player(int x, int y, t_data *data)
 	}
 	i = -1;
 	while (++i <= 10)
-	{
 		mlx_pxl(data->img, x + i, y + 10, 0xFFFFFF);
-	}
 }
 
 void	draw_player2(int x, int y, t_data *data)
@@ -65,9 +63,7 @@ void	draw_player2(int x, int y, t_data *data)
 	}
 	i = -1;
 	while (++i <= S_SQUARE)
-	{
 		mlx_pxl(data->img, x + i, y + S_SQUARE, 0x00FF00);
-	}
 }
 
 void	draw_player3(int x, int y, t_data *data)
@@ -94,9 +90,7 @@ void	draw_player3(int x, int y, t_data *data)
 	}
 	i = -1;
 	while (++i <= S_SQUARE / 4)
-	{
 		mlx_pxl(data->img, x + i, y + S_SQUARE / 4, 0x00FF00);
-	}
 }
 
 void	draw_player4(int x, int y, t_data *data)
@@ -123,7 +117,5 @@ void	draw_player4(int x, int y, t_data *data)
 	}
 	i = -1;
 	while (++i <= S_SQUARE / 8)
-	{
 		mlx_pxl(data->img, x + i, y + S_SQUARE / 8, 0xFF0000);
-	}
 }

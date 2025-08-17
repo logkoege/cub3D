@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:19:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/16 18:47:28 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/17 15:38:57 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ int	main(int argc, char **argv)
 	mlx_hook(data.win, 17, 0, ft_close, &data);
 	mlx_loop_hook(data.mlx, draw_player_loop, &data);
 	mlx_loop(data.mlx);
-	free_mlx(&data);
 	printf("caca\n");
-	free_map_exit(&data, NULL);
 	return (0);
 }

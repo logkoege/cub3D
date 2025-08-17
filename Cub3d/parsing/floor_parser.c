@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:47:20 by lloginov          #+#    #+#             */
-/*   Updated: 2025/07/08 06:54:52 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/08/17 16:54:09 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	check_red(t_data *data, char *red)
 	redd = ft_atoi(red);
 	if (redd < 0 || redd > 255)
 	{
-		free_exit(data, "Error : floor red color");
 		free(red);
+		free_exit(data, "Error : floor red color");
 	}
 	free(red);
 	return (redd);
@@ -38,8 +38,8 @@ int	check_green(t_data *data, char *green)
 	greenn = ft_atoi(green);
 	if (greenn < 0 || greenn > 255)
 	{
-		free_exit(data, "Error : floor green color");
 		free(green);
+		free_exit(data, "Error : floor green color");
 	}
 	free(green);
 	return (greenn);
