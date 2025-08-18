@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 00:00:00 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/17 20:36:42 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:26:55 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define LEFT			65361
 
 # define WIDTH			1280
-# define HEIGHT			720
+# define HEIGHT			1000
 # define DD_MOD			0
 # define BONUS			1
 

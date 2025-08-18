@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:47:20 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/17 16:54:09 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:30:33 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	rgb_to_hex(int r, int g, int b)
 {
+	//if (r >)
 	return (((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF));
 }
 

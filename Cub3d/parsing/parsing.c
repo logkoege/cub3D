@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:57:53 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/17 15:21:52 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/18 13:27:57 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,10 @@ void	map_size(t_data *data, int ac, char **av)
 	data->file_size = i;
 	data->map = malloc(sizeof(char *) * (data->file_size + 1));
 	if (!data->map)
+	{
+		close(fd);
 		print_exit("Error : malloc map failed");
+	}
 	close(fd);
 }
 
@@ -80,14 +83,23 @@ void	map_dup(t_data *data, char *map)
 
 void	file_acces(t_data *data)
 {
-	if (open(data->file_south, O_RDONLY) == -1)
-		free_exit(data, "Error : cannot access south texture");
-	else if (open(data->file_west, O_RDONLY) == -1)
-		free_exit(data, "Error : cannot access west texture");
-	else if (open(data->file_north, O_RDONLY) == -1)
-		free_exit(data, "Error : cannot access north texture");
-	else if (open(data->file_east, O_RDONLY) == -1)
-		free_exit(data, "Error : cannot access east texture");
+	int	south_fd;
+	int	north_fd;
+	int	east_fd;
+	int	west_fd;
+
+	south_fd = open(data->file_south, O_RDONLY);
+	west_fd = open(data->file_west, O_RDONLY);
+	north_fd = open(data->file_north, O_RDONLY);
+	east_fd = open(data->file_east, O_RDONLY);
+	if (south_fd == -1 || west_fd == -1 || north_fd == -1 || east_fd == -1)
+	{
+		close(west_fd);
+		close(east_fd);
+		close(north_fd);
+		close(south_fd);
+		free_map_exit(data, "Error : cannot access texture");
+	}
 }
 
 int	parsing(t_data *data, int ac, char **av)
