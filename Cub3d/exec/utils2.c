@@ -29,7 +29,7 @@ void	load_texture(t_tex *tex, t_data *data)
 		|| !tex->textures[WEST] || !tex->textures[EAST])
 	{
 		printf("Error loading textures\n");
-		exit(EXIT_FAILURE);
+		ft_close(data);
 	}
 	while (i < 4)
 	{

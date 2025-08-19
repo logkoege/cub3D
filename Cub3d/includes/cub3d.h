@@ -289,6 +289,7 @@ int		check_ws(char *arg, int i);
 void	floor_color_arg(t_data *data, char *arg);
 int		ft_isdigit(int c);
 int		ft_strcmp_clor(char *s1, char *s2);
+int		ft_strcmp_clor2(char *s1, char *s2);
 int		find_char(char *str, char c);
 void	free_tab(char **tab);
 int		check_red(t_data *data, char *red);

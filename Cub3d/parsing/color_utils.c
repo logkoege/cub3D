@@ -26,9 +26,26 @@ int	ft_strcmp_clor(char *s1, char *s2)
 	i = 0;
 	while (s1[i])
 	{
+		if (s1[i] == s2[0])
+				return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	ft_strcmp_clor2(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i])
+	{
 		if (s1[i] == s2[0] && (s1[i + 1] == ' '
 				|| (s1[i + 1] < 13 && s1[i + 1] > 9)))
-			return (0);
+		{
+			if(i == 0)
+				return (0);
+		}
 		i++;
 	}
 	return (1);

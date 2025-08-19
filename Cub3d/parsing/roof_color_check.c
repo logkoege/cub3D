@@ -36,6 +36,7 @@ void	assign_colors2(t_data *data, char **split)
 	free(red);
 	free(green);
 	free(blue);
+	printf("r%d\ng%d\nb%d\n", data->r2, data->g2, data->b2);
 	hex = rgb_to_hex(data->r2, data->g2, data->b2);
 	data->floor_color = hex;
 }

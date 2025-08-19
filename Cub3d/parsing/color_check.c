@@ -21,12 +21,12 @@ void	color_check(t_data *data)
 	cmpt = 0;
 	while (data->map[i])
 	{
-		if (ft_strcmp_clor(data->map[i], "F") == 0)
+		if (ft_strcmp_clor2(data->map[i], "F") == 0)
 		{
 			cmpt++;
 			floor_color_arg(data, data->map[i]);
 		}
-		else if (ft_strcmp_clor(data->map[i], "C") == 0)
+		else if (ft_strcmp_clor2(data->map[i], "C") == 0)
 		{
 			cmpt++;
 			roof_color_arg(data, data->map[i]);
