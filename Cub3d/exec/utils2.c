@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 16:49:11 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/17 20:32:42 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:33:27 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	load_texture(t_tex *tex, t_data *data)
 
 	i = 0;
 	tex->textures[NORTH] = mlx_xpm_file_to_image(data->mlx,
-			"textures/north.xpm", &tex->tex_width_N, &tex->tex_height_N);
+			"textures/north.xpm", &tex->tex_width_n, &tex->tex_height_n);
 	tex->textures[SOUTH] = mlx_xpm_file_to_image(data->mlx,
-			"textures/south.xpm", &tex->tex_width_S, &tex->tex_height_S);
+			"textures/south.xpm", &tex->tex_width_s, &tex->tex_height_s);
 	tex->textures[WEST] = mlx_xpm_file_to_image(data->mlx,
-			"textures/west.xpm", &tex->tex_width_W, &tex->tex_height_W);
+			"textures/west.xpm", &tex->tex_width_w, &tex->tex_height_w);
 	tex->textures[EAST] = mlx_xpm_file_to_image(data->mlx,
-			"textures/east.xpm", &tex->tex_width_E, &tex->tex_height_E);
+			"textures/east.xpm", &tex->tex_width_e, &tex->tex_height_e);
 	if (!tex->textures[NORTH] || !tex->textures[SOUTH]
 		|| !tex->textures[WEST] || !tex->textures[EAST])
 	{
@@ -90,12 +90,12 @@ void	free_mlx(t_data *data)
 
 void	init_var3(t_tex *tex)
 {
-	tex->tex_width_N = 0;
-	tex->tex_width_S = 0;
-	tex->tex_width_W = 0;
-	tex->tex_width_E = 0;
-	tex->tex_height_N = 0;
-	tex->tex_height_S = 0;
-	tex->tex_height_W = 0;
-	tex->tex_height_E = 0;
+	tex->tex_width_n = 0;
+	tex->tex_width_s = 0;
+	tex->tex_width_w = 0;
+	tex->tex_width_e = 0;
+	tex->tex_height_n = 0;
+	tex->tex_height_s = 0;
+	tex->tex_height_w = 0;
+	tex->tex_height_e = 0;
 }

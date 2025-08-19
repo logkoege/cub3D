@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_files.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 12:02:43 by lloginov          #+#    #+#             */
-/*   Updated: 2025/07/10 14:32:32 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:25:02 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	north_check(t_data *data, int i, int counter)
 	pos = check_arg(data->map[i], 'N', 'O');
 	pos2 = check_ws(data->map[i], pos);
 	if (pos == pos2)
+		free_exit(data, "Error : north texture not working");
+	if (data->file_north)
 		free_exit(data, "Error : north texture not working");
 	data->file_north = ft_sub(data->map[i], pos, pos2 + 1);
 	counter++;
@@ -35,6 +37,8 @@ int	south_check(t_data *data, int i, int counter)
 	pos2 = check_ws(data->map[i], pos);
 	if (pos == pos2)
 		free_exit(data, "Error : south texture not working");
+	if (data->file_south)
+		free_exit(data, "Error : south texture not working");
 	data->file_south = ft_sub(data->map[i], pos, pos2 + 1);
 	counter++;
 	return (counter);
@@ -49,6 +53,8 @@ int	east_check(t_data *data, int i, int counter)
 	pos2 = check_ws(data->map[i], pos);
 	if (pos == pos2)
 		free_exit(data, "Error : east texture not working");
+	if (data->file_east)
+		free_exit(data, "Error : east texture not working");
 	data->file_east = ft_sub(data->map[i], pos, pos2 + 1);
 	counter++;
 	return (counter);
@@ -62,6 +68,8 @@ int	west_check(t_data *data, int i, int counter)
 	pos = check_arg(data->map[i], 'W', 'E');
 	pos2 = check_ws(data->map[i], pos);
 	if (pos == pos2)
+		free_exit(data, "Error : west texture not working");
+	if (data->file_west)
 		free_exit(data, "Error : west texture not working");
 	data->file_west = ft_sub(data->map[i], pos, pos2 + 1);
 	counter++;
@@ -91,5 +99,5 @@ void	wall_files_check(t_data *data)
 		free_exit(data, "Error : too many texture files");
 	if (counter < 4)
 		free_exit(data, "Error : missing texture files");
-	// check_xpm(data);
+	check_xpm(data);
 }

@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 00:00:00 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/18 15:16:04 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:30:36 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define WIDTH			1280
 # define HEIGHT			1000
 # define DD_MOD			0
-# define BONUS			0
+# define BONUS			1
 
 typedef struct s_pixel
 {
@@ -72,14 +72,14 @@ typedef struct s_pixel
 typedef struct s_tex
 {
 	void				*textures[4];
-	int					tex_width_N;
-	int					tex_width_S;
-	int					tex_width_W;
-	int					tex_width_E;
-	int					tex_height_N;
-	int					tex_height_S;
-	int					tex_height_W;
-	int					tex_height_E;
+	int					tex_width_n;
+	int					tex_width_s;
+	int					tex_width_w;
+	int					tex_width_e;
+	int					tex_height_n;
+	int					tex_height_s;
+	int					tex_height_w;
+	int					tex_height_e;
 	void				*img;
 	char				*addr[4];
 	t_pixel				*pixels[4];
@@ -121,6 +121,14 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	int					r2;
+	int					g2;
+	int					b2;
+	int					ii;
+	char				*line;
+	int					r;
+	int					g;
+	int					b;
 	int					south_fd;
 	int					north_fd;
 	int					east_fd;
@@ -228,7 +236,6 @@ void	part_4(t_data *data);
 bool	line_to_wall(double px, double py, t_data *data);
 double	sqr(double a);
 double	squirt(double x, double y, double x1, double x2);
-void	ray(t_data *data, int i, int size, double p_x, double p_y);
 
 /* exec/minimap.c */
 void	draw_ray(t_data *data, double ray_dir_x, double ray_dir_y);
@@ -288,7 +295,7 @@ int		check_red(t_data *data, char *red);
 int		check_green(t_data *data, char *green);
 int		check_blue(t_data *data, char *blue);
 int		rgb_to_hex(int r, int g, int b);
-void	check_is_num(t_data *data, char *red, char *green, char *blue);
+int		check_is_num(t_data *data, char *red, char *green, char *blue);
 void	free_rgb(t_data *data, char *red, char *green, char *blue);
 
 /* parsing/roof_color.c */

@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:57:53 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/18 15:17:12 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:41:45 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,26 +29,24 @@ void	map_name(char *map)
 
 void	map_size(t_data *data, int ac, char **av)
 {
-	int		i;
 	char	*map;
 	int		fd;
-	char	*line;
 
 	map = av[1];
-	i = 0;
+	data->ii = 0;
 	(void)ac;
 	fd = open(map, O_RDONLY);
 	if (fd == -1)
 		print_exit("Error : cannot open map (first pass)");
 	while (1)
 	{
-		line = get_next_line(fd);
-		if (!line)
+		data->line = get_next_line(fd);
+		if (!data->line)
 			break ;
-		free(line);
-		i++;
+		free(data->line);
+		data->ii++;
 	}
-	data->file_size = i;
+	data->file_size = data->ii;
 	data->map = malloc(sizeof(char *) * (data->file_size + 1));
 	if (!data->map)
 	{
@@ -84,13 +82,25 @@ void	map_dup(t_data *data, char *map)
 void	file_acces(t_data *data)
 {
 	data->south_fd = open(data->file_south, O_RDONLY);
+	if (data->south_fd == -1)
+		free_map_exit(data, "Error : cannot access texture");
 	data->west_fd = open(data->file_west, O_RDONLY);
+	if (data->west_fd == -1)
+	{
+		close(data->south_fd);
+		free_map_exit(data, "Error : cannot access texture");
+	}
 	data->north_fd = open(data->file_north, O_RDONLY);
+	if (data->north_fd == -1)
+	{
+		close(data->south_fd);
+		close(data->west_fd);
+		free_map_exit(data, "Error : cannot access texture");
+	}
 	data->east_fd = open(data->file_east, O_RDONLY);
-	if (data->south_fd == -1 || data->west_fd == -1 || data->north_fd == -1 || data->east_fd == -1)
+	if (data->east_fd == -1)
 	{
 		close(data->west_fd);
-		close(data->east_fd);
 		close(data->north_fd);
 		close(data->south_fd);
 		free_map_exit(data, "Error : cannot access texture");

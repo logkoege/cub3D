@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 17:40:57 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/17 17:55:21 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:45:04 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,22 @@ void	assign_colors2(t_data *data, char **split)
 	red = ft_dup(split[0]);
 	green = ft_dup(split[1]);
 	blue = ft_dup(split[2]);
+	if (check_is_num(data, red, green, blue) == -1)
+	{
+		free_tab(split);
+		free_rgb(data, red, green, blue);
+	}
 	free_tab(split);
-	check_is_num(data, red, green, blue);
-	hex = rgb_to_hex(check_red(data, red), check_green(data, green), check_blue(data, blue));
-	data->roof_color = hex;
+	data->r2 = check_red(data, red);
+	data->g2 = check_green(data, green);
+	data->b2 = check_blue(data, blue);
+	if (data->r2 == -1 || data->g2 == -1 || data->b2 == -1)
+		free_rgb(data, red, green, blue);
+	free(red);
+	free(green);
+	free(blue);
+	hex = rgb_to_hex(data->r2, data->g2, data->b2);
+	data->floor_color = hex;
 }
 
 void	roof_color_arg(t_data *data, char *arg)

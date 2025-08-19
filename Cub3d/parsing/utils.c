@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:28:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/17 15:17:36 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:45:50 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ void	init_var(t_data *data)
 	data->truemap = NULL;
 	data->true_map_len = 0;
 	data->line_len = 0;
+	data->south_fd = 0;
+	data->east_fd = 0;
+	data->north_fd = 0;
+	data->west_fd = 0;
 }
 
 char	*ft_dup(char *s1)

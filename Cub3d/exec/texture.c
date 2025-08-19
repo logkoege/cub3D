@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 18:58:54 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/17 20:21:22 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:34:00 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	load_textures(t_tex *tex, t_data *data)
 
 	i = 0;
 	tex->textures[NORTH] = mlx_xpm_file_to_image(data->mlx,
-			data->file_north, &tex->tex_width_N, &tex->tex_height_N);
+			data->file_north, &tex->tex_width_n, &tex->tex_height_n);
 	tex->textures[SOUTH] = mlx_xpm_file_to_image(data->mlx,
-			data->file_south, &tex->tex_width_S, &tex->tex_height_S);
+			data->file_south, &tex->tex_width_s, &tex->tex_height_s);
 	tex->textures[WEST] = mlx_xpm_file_to_image(data->mlx,
-			data->file_west, &tex->tex_width_W, &tex->tex_height_W);
+			data->file_west, &tex->tex_width_w, &tex->tex_height_w);
 	tex->textures[EAST] = mlx_xpm_file_to_image(data->mlx,
-			data->file_east, &tex->tex_width_E, &tex->tex_height_E);
+			data->file_east, &tex->tex_width_e, &tex->tex_height_e);
 	if (!tex->textures[NORTH] || !tex->textures[SOUTH]
 		|| !tex->textures[WEST] || !tex->textures[EAST])
 	{

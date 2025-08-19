@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_surround.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lloginov <lloginov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 23:11:04 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/11 15:59:41 by lloginov         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:26:29 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,4 @@ void	floodfill(t_data *data)
 	mapping_testing(data);
 	replace_flood_fill(data, data->player_y, data->player_x);
 	data->map2[data->player_y][data->player_x] = player;
-	// print_map(data->map2);
 }

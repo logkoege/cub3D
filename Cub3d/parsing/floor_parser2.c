@@ -6,37 +6,39 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 06:55:00 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/17 16:53:34 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/19 20:30:10 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void	check_is_num(t_data *data, char *red, char *green, char *blue)
+int	check_is_num(t_data *data, char *red, char *green, char *blue)
 {
 	int	i;
 
 	i = 0;
+	(void)data;
 	while (red[i])
 	{
 		if (ft_isdigit(red[i]) == 0)
-			free_rgb(data, red, green, blue);
+			return (-1);
 		i++;
 	}
 	i = 0;
 	while (green[i])
 	{
 		if (ft_isdigit(green[i]) == 0)
-			free_rgb(data, red, green, blue);
+			return (-1);
 		i++;
 	}
 	i = 0;
 	while (blue[i])
 	{
 		if (ft_isdigit(blue[i]) == 0)
-			free_rgb(data, red, green, blue);
+			return (-1);
 		i++;
 	}
+	return (0);
 }
 
 void	assign_colors(t_data *data, char **split)
@@ -49,10 +51,21 @@ void	assign_colors(t_data *data, char **split)
 	red = ft_dup(split[0]);
 	green = ft_dup(split[1]);
 	blue = ft_dup(split[2]);
-	check_is_num(data, red, green, blue);
+	if (check_is_num(data, red, green, blue) == -1)
+	{
+		free_tab(split);
+		free_rgb(data, red, green, blue);
+	}
 	free_tab(split);
-	hex = rgb_to_hex(check_red(data, red),
-			check_green(data, green), check_blue(data, blue));
+	data->r = check_red(data, red);
+	data->g = check_green(data, green);
+	data->b = check_blue(data, blue);
+	if (data->r == -1 || data->g == -1 || data->b == -1)
+		free_rgb(data, red, green, blue);
+	free(red);
+	free(green);
+	free(blue);
+	hex = rgb_to_hex(data->r, data->g, data->b);
 	data->floor_color = hex;
 }
 
