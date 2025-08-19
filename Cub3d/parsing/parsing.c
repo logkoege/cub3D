@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 10:57:53 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/18 13:27:57 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:17:12 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,16 @@ void	map_dup(t_data *data, char *map)
 
 void	file_acces(t_data *data)
 {
-	int	south_fd;
-	int	north_fd;
-	int	east_fd;
-	int	west_fd;
-
-	south_fd = open(data->file_south, O_RDONLY);
-	west_fd = open(data->file_west, O_RDONLY);
-	north_fd = open(data->file_north, O_RDONLY);
-	east_fd = open(data->file_east, O_RDONLY);
-	if (south_fd == -1 || west_fd == -1 || north_fd == -1 || east_fd == -1)
+	data->south_fd = open(data->file_south, O_RDONLY);
+	data->west_fd = open(data->file_west, O_RDONLY);
+	data->north_fd = open(data->file_north, O_RDONLY);
+	data->east_fd = open(data->file_east, O_RDONLY);
+	if (data->south_fd == -1 || data->west_fd == -1 || data->north_fd == -1 || data->east_fd == -1)
 	{
-		close(west_fd);
-		close(east_fd);
-		close(north_fd);
-		close(south_fd);
+		close(data->west_fd);
+		close(data->east_fd);
+		close(data->north_fd);
+		close(data->south_fd);
 		free_map_exit(data, "Error : cannot access texture");
 	}
 }

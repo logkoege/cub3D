@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/11 00:00:00 by lloginov          #+#    #+#             */
-/*   Updated: 2025/08/18 13:26:55 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:16:04 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define WIDTH			1280
 # define HEIGHT			1000
 # define DD_MOD			0
-# define BONUS			1
+# define BONUS			0
 
 typedef struct s_pixel
 {
@@ -121,6 +121,10 @@ typedef struct s_player
 
 typedef struct s_data
 {
+	int					south_fd;
+	int					north_fd;
+	int					east_fd;
+	int					west_fd;
 	double				perpwalldist;
 	double				side_dist_x;
 	double				side_dist_y;

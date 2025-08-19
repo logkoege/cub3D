@@ -1,10 +1,10 @@
 NO ./texture/north.xpm
 SO ./texture/south.xpm
-SO ./texture/south.xpm
 WE ./texture/west.xpm
 EA ./texture/east.xpm
 
 C 0,0,0
+
 F 255,255,255
 
 

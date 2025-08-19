@@ -6,7 +6,7 @@
 /*   By: logkoege <logkoege@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 18:28:26 by logkoege          #+#    #+#             */
-/*   Updated: 2025/08/17 18:45:50 by logkoege         ###   ########.fr       */
+/*   Updated: 2025/08/18 15:18:20 by logkoege         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ int	ft_close(t_data *data)
 {
 	destroy_textures(data->tex, data);
 	free_mlx(data);
+	close(data->west_fd);
+	close(data->east_fd);
+	close(data->north_fd);
+	close(data->south_fd);
 	ft_freexit(data, "");
 	free_map_exit(data, NULL);
 	return (0);
